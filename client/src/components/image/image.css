@@ -1,0 +1,7 @@
+.image{
+    display: flex;
+    opacity: 0.3;
+    height: 100%;
+    width: 98vw;
+    flex: 1;
+}
