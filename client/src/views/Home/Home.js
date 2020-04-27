@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from '../../assets/logo.svg';
-import './Home.css';
-
-function Home() {
+import React, { useEffect, useState } from "react"
+import "./home.css";
+import Navbar from "../../components/navbar/navbar.js";
+import Image from "../../components/image/image.js";
+//import 'semantic-ui-css/semantic.min.css'
+const Home = () => {
+    const[a, seta] = useState(null);
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                </a>
-            </header>
-        </div>
+        <main class="wrapper">
+            <div className="header">
+            <Navbar />
+            </div>
+            <div className="imageDiv">
+                <Image/>
+                <h2 className="imageText">Hi...I am Soham Kale!!</h2>
+            </div>
+            <div className="leftText">
+                <h2>About Me</h2>
+                <p>I am Soham Kale. I am currently a Senior at University of Florida. I plan on graduating in Fall 2020. I am looking for a full-time job opportunity starting from Spring 2021. I am very passionate about computer science.</p>
+            </div>
+            <div className="rightText">
+                <h2>About Me</h2>
+                <p>I am Soham Kale. I am currently a Senior at University of Florida. I plan on graduating in Fall 2020. I am looking for a full-time job opportunity starting from Spring 2021. I am very passionate about computer science.</p>
+            </div>
+            <div className="footer">footer</div>
+            
+        </main>  
     );
 }
 
