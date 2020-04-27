@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import "./home.css";
+import "./Home.css";
 import Navbar from "../../components/navbar/navbar.js";
 import Image from "../../components/image/image.js";
 //import 'semantic-ui-css/semantic.min.css'
