@@ -1,0 +1,11 @@
+.backImage {
+    width: 100vw;
+    height: 100vw;
+    background-image: url(https://coolbackgrounds.io/images/unsplash/samuel-zeller-medium-b832fe04.jpg);
+}
+
+.center {
+    padding-left: 27%;
+    
+    align-items: center;
+}
