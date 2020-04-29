@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.mainContainer{
+    background-color: black;
+    width: 98%;
+    height: 90vh;
+    border: blue;
+    margin: 5px auto;
+    display: grid;
+    /* grid-template-rows: minmax(100px, auto) minmax(100px, auto)  ; */
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr)); */
+    grid-gap: 10px;
+}
+.square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: brown;
+    width: 50%;
+}
+.squareChild{
+    width: 50%;
+    height: 50%;
+    background-color: burlywood;
+}
+.descriptionContainer{
+    background: blue;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    grid-column: 2/ -1;
+    grid-row: 1;
+    display: flex;
+}
+.pStyle {
+    margin: auto;
+    text-align: center;
+}
+.imageContainer{
+    background: green;
+    text-align: center;
+    color: white;
+    grid-column: 1 / 2;
+    grid-row: 1;
+    border-color: brown;
+    border-style: dotted;
+    display: flex;
+
+    justify-content: center;
+}
+
+.skillsContainer{
+   
+    background: violet;
+    color: white;
+    text-align: center;
+    grid-column: 1 / -1;
+    grid-row: 2;
+}

@@ -1,0 +1,21 @@
+.projectContainer{
+    display: grid;
+    background-color: burlywood;
+    width: 100vw;
+    height: 500vh;
+    grid-template-rows: 1fr 1fr 1fr 1fr
+    
+}
+
+.project1{
+    background-color: chartreuse;
+}
+
+.project2{
+    background-color: cornflowerblue;
+ 
+}
+
+.project3{
+    background-color: crimson;
+}

@@ -2,17 +2,44 @@ import React, { useEffect, useState } from "react"
 import "./Home.css";
 import Navbar from "../../components/navbar/navbar.js";
 import Image from "../../components/image/image.js";
+import Typewriter from 'typewriter-effect';
 //import 'semantic-ui-css/semantic.min.css'
 const Home = () => {
     const[a, seta] = useState(null);
     return (
         <main class="wrapper">
-            <div className="header">
+            {/* <div className="header">
             <Navbar />
-            </div>
+            </div> */}
             <div className="imageDiv">
                 <Image/>
-                <h2 className="imageText">Hi...I am Soham Kale!!</h2>
+                {/* <h2 className="imageText">Hi...I am Soham Kale!!</h2> */}
+                <h1 className="imageText">
+                <Typewriter
+                    onInit={(typewriter) => {
+                        typewriter.changeDelay(40);
+                        typewriter.typeString('Hello, I am Soham Kale!')
+                        .callFunction(() => {
+                            console.log('String typed out!');
+                        })
+                        .changeDelay(40)
+                        .pauseFor(1500)
+                        .deleteAll()
+                        .typeString('I am a Software Developer.')
+                        .pauseFor(1500)
+                        .deleteAll()
+                        .callFunction(() => {
+                            console.log('All strings were deleted');
+                        })
+                        .start();
+                    }}
+                    options={{
+                        // strings: ['Hello', 'World'],
+                        autoStart: true,
+                        loop: true,
+                      }}
+                />
+                </h1>
             </div>
             <div className="leftText">
                 <h2>About Me</h2>
