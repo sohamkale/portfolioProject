@@ -7,6 +7,7 @@
     "react": "^16.10.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.10.1",
+    "react-media-hook": "^0.4.7",
     "react-scripts": "^3.3.0",
     "semantic-ui-react": "^0.88.2",
     "typewriter-effect": "^2.13.0"

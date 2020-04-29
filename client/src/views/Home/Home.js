@@ -8,9 +8,9 @@ const Home = () => {
     const[a, seta] = useState(null);
     return (
         <main class="wrapper">
-            <div className="header">
+            {/* <div className="header">
             <Navbar />
-            </div>
+            </div> */}
             <div className="imageDiv">
                 <Image/>
                 {/* <h2 className="imageText">Hi...I am Soham Kale!!</h2> */}

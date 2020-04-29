@@ -25,6 +25,7 @@
     background: black;
     text-align: center;
     color: white;
+    height: 100vh;
     grid-column: 1 / -1;
 
 }
@@ -52,20 +53,24 @@
     position: absolute;
     left: 20vw;
     right: 20vw;
-    top: 20vw;
+    top: 20vh;
     bottom: 20vw;
+    font-size: 3vw;
 }
 
-p{
+/* p{
     border-style: solid;
     padding: 1vw;
     margin: 2px;
 
-}
+} */
 
 @media (max-width: 680px) {
     .wrapper{
         grid-template-rows: minmax(50px, auto) minmax(100px, auto) repeat(2, minmax(100px, auto));
+    }
+    .imageDiv{
+        height: 100vh;
     }
     .leftText{
         grid-column: 1 / -1 ; 
