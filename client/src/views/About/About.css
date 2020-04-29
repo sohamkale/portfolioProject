@@ -62,3 +62,19 @@
     grid-column: 1 / -1;
     grid-row: 2;
 }
+
+@media (max-width: 680px) {
+    .mainContainer{
+        grid-template-rows: repeat(auto, minmax(100px, auto));
+        grid-template-columns: repeat(auto, minmax(100px, auto));
+    }
+    .imageContainer{
+        grid-column: 1 / -1 ; 
+    }
+    .descriptionContainer{
+        grid-column: 1 / -1 ; 
+    }
+    .skillsContainer{
+        grid-column: 1 / -1;
+    }
+}
