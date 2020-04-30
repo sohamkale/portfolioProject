@@ -28,10 +28,10 @@ const About = (props) => {
                 </div> */}
                 <Card style={{width: "100%"}} bg={'dark'} text={'white'}>
                 <Card.Title>About Me</Card.Title>
-                <Card.Body>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                   It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                   It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Card.Body>
+                <Card.Body>I am Soham Kale. I am currently a Senior at University of Florida. 
+                   I plan on graduating in Fall 2020. I am looking for a full-time job opportunity starting from Spring 2021. 
+                   I am very passionate about computer science. 
+                </Card.Body>
                 </Card>
             </div>
             <div className="skillsContainer">skillsContainer</div>
