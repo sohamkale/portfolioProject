@@ -3,9 +3,11 @@ import "./Home.css";
 import Navbar from "../../components/navbar/navbar.js";
 import Image from "../../components/image/image.js";
 import Typewriter from 'typewriter-effect';
+import { useMediaPredicate } from "react-media-hook";
 //import 'semantic-ui-css/semantic.min.css'
 const Home = () => {
     const[a, seta] = useState(null);
+    const isMobile = useMediaPredicate("(max-width: 768px)");
     return (
         <main class="wrapper">
             {/* <div className="header">
@@ -13,6 +15,7 @@ const Home = () => {
             </div> */}
             <div className="imageDiv">
                 <Image/>
+                {/* {isMobile ?  null : <Image/>}    */}
                 {/* <h2 className="imageText">Hi...I am Soham Kale!!</h2> */}
                 <h1 className="imageText">
                 <Typewriter
