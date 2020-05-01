@@ -3,6 +3,8 @@ import {Container, Row, Col} from 'react-bootstrap';
 import "./Projects.css";
 import image from "./image.png";
 import image2 from "./home.png";
+import mixmasalaimage from "./mixmasalaImage.png";
+import mixmasalaimage2 from "./mixmasalaimage2.png";
 import gif1 from "./gif1.gif";
 import gif2 from "./gif2.gif";
 import Card from "./../../components/Card/Card.js";
@@ -31,10 +33,13 @@ const Projects = (props) => {
             <br/>
             <div>
                 <Card
-                image={image}
-                image2={image2}
-                title="Restaurant Website"
-                desc="Web"/>
+                image={mixmasalaimage}
+                image2={mixmasalaimage2}
+                title="Miks masala Website"
+                desc="A website for Miks masala, a family-owned food delivery service in Orlando, FL. 
+                Used HTML, CSS, JS as the front-end for dynamically creating HTML elements and updating pages.
+                Made use of PHP and firebase as the backend to keep track of customers and their orders. 
+                Used PHP to send emails with customer orders to the owner and allowed him to either accept/deny the orders."/>
             </div>
             <br/>
             <div>
