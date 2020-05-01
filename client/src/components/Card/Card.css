@@ -10,3 +10,15 @@
 .bg-custom-1 {
     background-color: #7dcc93;
 }
+.flexDiv{
+    display: flex;
+}
+.imageframe{
+height: 100%;
+width: 99%;
+}
+.border-3 {
+    border-color: black;
+    border-style: solid;
+    border-width:2px !important;
+}
