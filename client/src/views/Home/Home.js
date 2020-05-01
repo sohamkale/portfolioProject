@@ -3,16 +3,18 @@ import "./Home.css";
 import Navbar from "../../components/navbar/navbar.js";
 import Image from "../../components/image/image.js";
 import Typewriter from 'typewriter-effect';
+import Button from 'react-bootstrap/Button';
 import { useMediaPredicate } from "react-media-hook";
 //import 'semantic-ui-css/semantic.min.css'
 const Home = () => {
     const[a, seta] = useState(null);
     const isMobile = useMediaPredicate("(max-width: 768px)");
+
+    const onClick = e => {
+        window.location.href="/projects";
+    }
     return (
         <main class="wrapper">
-            {/* <div className="header">
-            <Navbar />
-            </div> */}
             <div className="imageDiv">
                 <Image/>
                 {/* {isMobile ?  null : <Image/>}    */}
@@ -43,6 +45,9 @@ const Home = () => {
                       }}
                 />
                 </h1>
+                <div className="buttonDiv">
+                <Button onClick={onClick}>View my work</Button>
+                </div>
             </div>
             <div className="leftText">
                 <h2>About Me</h2>

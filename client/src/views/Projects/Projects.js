@@ -12,11 +12,11 @@ const Projects = (props) => {
     return (
 
         <div className="project1">
-            <div class="card md-3">
+            <div class="md-3">
                 <div class="row no-gutters">
                 <div class="col-md-12">
                     <div class="card-body">
-                    <h5 class="card-title text-center">My Work</h5>
+                    <h5 class="text-center">My Work</h5>
 
                     </div>
                 </div>
