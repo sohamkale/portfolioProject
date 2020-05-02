@@ -7,9 +7,9 @@
 .bg-primary {
     background-color: rgba(0, 0, 0, 0.2)!important;
 }
-.bg-custom-1 {
+/* .bg-custom-1 {
     background-color: #7dcc93;
-}
+} */
 .flexDiv{
     display: flex;
 }

@@ -28,6 +28,7 @@ import Home from "./views/Home/Home.js";
 import About from "./views/About/About";
 import Resume from "./views/Resume/Resume.js";
 import Projects from "./views/Projects/Projects.js";
+import ContactMe from "./views/Contact Me/ContactMe.js";
 import Navbar from "./components/navbar/navbarnew.js";
  import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -48,6 +49,7 @@ function App() {
             <Route exact path="/Resume" component={Resume} />
             <Route exact path="/about" component={About} />
             <Route exact path="/projects" component={Projects} />
+            <Route exact path="/contact" component={ContactMe} />
             {/* <Route exact path="/Projects" component={Services} />
             <Route exact path="/Login" component={LoginHome} />
             <Route exact path="/Signup" component={Signup} />
