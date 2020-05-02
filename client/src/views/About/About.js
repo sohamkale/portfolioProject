@@ -6,7 +6,9 @@ import { Progress } from 'semantic-ui-react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import ResumeCard from "./../../components/ResumeCard/ResumeCard";
 import image from "../../components/image/backImage2.jpg"
-import myImage from "./pic.png"
+import myImage from "./pic.png";
+import { Icon } from 'semantic-ui-react';
+
 import { useMediaPredicate } from "react-media-hook";
 const About = (props) => {
     let react = 75, CSS = 65, HTML = 75, C = 80, Java = 80, JS = 75, Node = 60, Git = 75, Firebase = 70, AS = 40;
@@ -61,8 +63,23 @@ const About = (props) => {
                 </Card.Body>
                 </Card>
             </div>
+            <div className="gpaContainer bg-dark eduFont">
+                
+                <h4>Education</h4>
+                <Icon name='university' size='large' />
+                <ul><b><u>University of Florida, Gainesville, FL</u></b>
+                    <li>Bachelor's Degree </li>
+                    <li>Computer Science - Herbert Wertheim College of Engineering (Current)</li>
+                    <li>GPA: 3.95</li>
+                </ul>
+                <ul><b><u>Valencia Community College, Orlando, FL</u></b>
+                    <li>Associates in Arts Degree </li>
+                    <li>Computer Science</li>
+                    <li>GPA: 4.0</li>
+                </ul>
+            </div>
             <div className="skillsContainer bg-dark">
-                <h4 className="headStyle">My most important skills</h4>
+                <h4 className="headStyle">Relevant skills</h4>
             
             {/* <div class="row no-gutters">
             <label className="col-sm-1 bg-dark text-white labelHeight">React</label>
