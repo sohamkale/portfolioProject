@@ -6,7 +6,9 @@ import { Progress } from 'semantic-ui-react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import ResumeCard from "./../../components/ResumeCard/ResumeCard";
 import image from "../../components/image/backImage2.jpg"
+import { MDBIcon } from "mdbreact";
 import myImage from "./pic.png";
+
 import { Icon } from 'semantic-ui-react';
 
 import { useMediaPredicate } from "react-media-hook";
@@ -28,17 +30,16 @@ const About = (props) => {
 
     return (
         <div className="mainContainer">
-            
             <div className="imageContainer bg-dark">
                 <div className="square">
-                    <div className="container-fluid" >
-                    <img className="squareChild" src={myImage}></img>
-                    </div>
+                    {/* <div className="container-fluid" > */}
+                    <img className="img-fluid" src={myImage}></img>
+                    {/* </div> */}
                    
                     {/* <div className="squareChild">Square</div> */}
                 </div>
             </div>
-            <div className="descriptionContainer text-lg-center">
+            <div className="descriptionContainer text-lg-center border-bottom">
                 {/* <div className="pStyle">
                     <h3>About Me!</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -63,21 +64,35 @@ const About = (props) => {
                 </Card.Body>
                 </Card>
             </div>
-            <div className="gpaContainer bg-dark eduFont">
+            <div className="gpaContainer bg-dark eduFont border-bottom">
                 
                 <h4>Education</h4>
-                <Icon name='university' size='large' />
+                
                 <ul><b><u>University of Florida, Gainesville, FL</u></b>
-                    <li>Bachelor's Degree </li>
-                    <li>Computer Science - Herbert Wertheim College of Engineering (Current)</li>
+                    <li>Bachelor's Degree (December 2020)</li>
+                    <li>Computer Science - Herbert Wertheim College of Engineering</li>
                     <li>GPA: 3.95</li>
                 </ul>
                 <ul><b><u>Valencia Community College, Orlando, FL</u></b>
-                    <li>Associates in Arts Degree </li>
+                    <li>Associates in Arts Degree (August 2018)</li>
                     <li>Computer Science</li>
                     <li>GPA: 4.0</li>
                 </ul>
             </div>
+            <div className="softSkillsContainer bg-dark eduFont border-bottom">
+                
+                <h4>Soft Skills</h4>
+                <Icon name='university' size='large' />
+                <ul>
+                    <li>Focused and attentive</li>
+                    <li>Hardworking and energetic</li>
+                    <li>Friendly</li>
+                    <li>Team player</li>
+                    <li>Positive and helpful</li>
+                    <li>Detail and goal-oriented</li>
+                </ul>
+            </div>
+            {/* vision, professional approach, hobbies */}
             <div className="skillsContainer bg-dark">
                 <h4 className="headStyle">Relevant skills</h4>
             
