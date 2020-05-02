@@ -1,0 +1,27 @@
+.fullWebpage{
+    width: 100vw;
+    height: 100vh;
+}
+
+.dropDivAlign{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #66A7D5;
+}
+
+.boxCenter{
+    padding-top: 10vh;
+    width: 50vw;
+    height: 10vw;
+    text-align: center;
+    /* background-color: lightcyan; */
+}
+
+.containerDivison{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
