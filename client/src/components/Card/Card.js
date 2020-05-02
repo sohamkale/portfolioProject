@@ -7,23 +7,17 @@ import gif1 from "./gif1.gif";
 import "./Card.css";
 const Card = (props) => {
     return (
-    <div class="lg-3 border-0">
-    <div class="row no-gutters bg-custom-1">
-      <div class="col-lg-3 border-left border-top border-bottom border-3 flexDiv">
-        <img src={props.image} class="card-img imageframe" alt="..."/>
-        {/* <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GnvW1X5f3Zk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-      </div>
-      <div class="col-lg-3 col-md-borderflexDiv">
-        <img src={props.image2}class="card-img imageframe" alt="..."/>
-      </div>
-      <div class="col-lg-6 border-0">
-        <div class="card-body">
-          <h5 class="card-title">{props.title}</h5>
-          <p class="card-text">{props.desc}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <Container className="containerDivison">
+        <div className="boxCenter text-white">
+            <img src={props.image} class="img-fluid"/>
+            <br/><br/>
+            <h4 className="card-title">{props.title}</h4>
+            
+            <div className="card-text">
+                <p>{props.desc}</p>
+            </div>
+        </div>               
+    </Container>
     );
 }
 export default Card;

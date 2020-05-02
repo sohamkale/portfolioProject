@@ -1,24 +1,49 @@
-.back{
-    background: goldenrod;
+.boxCenter{
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    width: 60vw;
+    text-align: center;
+    /* background-color: lightcyan; */
 }
-.card{
-    background-color: goldenrod; 
-}
-.bg-primary {
-    background-color: rgba(0, 0, 0, 0.2)!important;
-}
-/* .bg-custom-1 {
-    background-color: #7dcc93;
-} */
-.flexDiv{
+
+.containerDivison{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-.imageframe{
-height: 100%;
-width: 99%;
+
+
+
+@media (max-width: 768px) {
+    .boxCenter{
+        padding-top: 5vh;
+        width: 85vw;
+        text-align: center;
+        /* background-color: lightcyan; */
+    }
+
+    h4{
+        font-size: 5vw !important;  
+    }
+    
+    .textClass{
+        font-size: 3vw;;
+    }
 }
-.border-3 {
-    border-color: black;
-    border-style: solid;
-    border-width:2px !important;
+
+@media (max-width: 1024px) {
+    .boxCenter{
+        padding-top: 5vh;
+        width: 85vw;
+        text-align: center;
+        /* background-color: lightcyan; */
+    }
+    h4{
+        font-size: 5vw !important;  
+    }
+    
+    .textClass{
+        font-size: 3vw;
+    }
 }

@@ -11,9 +11,9 @@ const PCard = (props) => {
         <div className="boxCenter text-white">
             <img src={props.image} class="img-fluid"/>
             <br/><br/>
-            <h4 className="textClass">{props.title}</h4>
+            <h4 className="card-title">{props.title}</h4>
             
-            <div className="textClass">
+            <div className="card-text">
                 <p>{props.desc}</p>
             </div>
             
