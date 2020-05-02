@@ -4,7 +4,9 @@ import Navbar from "../../components/navbar/navbar.js";
 import Image from "../../components/image/image.js";
 import Typewriter from 'typewriter-effect';
 import Button from 'react-bootstrap/Button';
+import Footer from "./../../components/Footer/Footer.js";
 import { useMediaPredicate } from "react-media-hook";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import 'semantic-ui-css/semantic.min.css'
 const Home = () => {
     const[a, seta] = useState(null);
@@ -15,6 +17,7 @@ const Home = () => {
     }
     return (
         <main class="wrapper">
+            
             <div className="imageDiv">
                 <Image/>
                 {/* {isMobile ?  null : <Image/>}    */}
@@ -49,16 +52,18 @@ const Home = () => {
                 <Button onClick={onClick}>View my work</Button>
                 </div>
             </div>
-            <div className="leftText">
+            
+            {/* <div className="leftText">
                 <h2>About Me</h2>
                 <p>I am Soham Kale. I am currently a Senior at University of Florida. I plan on graduating in Fall 2020. I am looking for a full-time job opportunity starting from Spring 2021. I am very passionate about computer science.</p>
             </div>
             <div className="rightText">
                 <h2>About Me</h2>
                 <p>I am Soham Kale. I am currently a Senior at University of Florida. I plan on graduating in Fall 2020. I am looking for a full-time job opportunity starting from Spring 2021. I am very passionate about computer science.</p>
-            </div>
-            <div className="footer">footer</div>
-            
+            </div> */}
+            <div className="footer">
+                <Footer/>
+                </div>  
         </main>  
     );
 }

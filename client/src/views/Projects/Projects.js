@@ -57,7 +57,7 @@ const Projects = (props) => {
             <PCard
                 image={image}
                 title="Gator Raider"
-                desc="Lead a group of 4 students, monitored and tracked their progress as part of one of my classes to implement an algorithm in Java which controlled the movement of a software robot team which competed against the other teams. 
+                desc="Led a group of 4 students, monitored and tracked their progress as part of one of my classes to implement an algorithm in Java which controlled the movement of a software robot team which competed against the other teams. 
                 Created 4 virtual robots each with unique strategies and defense techniques. The robots could change their tactics depending on the opponent robot's position and attacking mechanism.
                 We used external libraries, and also worked with already existing code to modify/add code to improve the performance of the robots."/>
             </Row>
