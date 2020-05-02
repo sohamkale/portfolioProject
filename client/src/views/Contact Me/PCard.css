@@ -13,8 +13,6 @@
     align-items: center;
 }
 
-
-
 @media (max-width: 768px) {
     .boxCenter{
         padding-top: 5vh;
@@ -26,7 +24,7 @@
     h4{
         font-size: 5vw !important;  
     }
-    
+
     .textClass{
         font-size: 3vw;;
     }

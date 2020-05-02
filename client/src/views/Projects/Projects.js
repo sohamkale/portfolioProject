@@ -16,7 +16,7 @@ const Projects = (props) => {
             <div class="row bg-info no-gutters">
                 <div class="col-sm-12">
                     <div class="card-body">
-                        <h5 class="text-center">My Work</h5>
+                        <h5 class="text-center">My Projects</h5>
                     </div>
                 </div>
             </div>

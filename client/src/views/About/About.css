@@ -10,11 +10,12 @@
     border: blue;
     display: grid;
     /* grid-template-rows: minmax(100px, auto) minmax(100px, auto)  ; */
-    grid-template-rows: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
     grid-template-columns: 1fr 1fr;
     /* grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr)); */
     grid-gap: 0px;
 }
+
 .square{
     display: flex;
     justify-content: center;
@@ -41,6 +42,11 @@
     text-align: center;
     font-size: 2.5vh;
 }
+
+.eduFont{
+    font-size: 2.5vh;
+}
+
 .headStyle{
     font-size: 3.5vh;
 }
@@ -55,13 +61,20 @@
     justify-content: center;
 }
 
+.gpaContainer{
+    color: white;
+    text-align: center;
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
 .skillsContainer{
    /* display: flex; */
     /* background-color: rgb(16, 25, 70); */
     color: white;
     text-align: center;
     grid-column: 1 / -1;
-    grid-row: 2;
+    grid-row: 3;
 }
 .progress {height: 3vh !important;}
 
@@ -84,7 +97,7 @@
 @media (max-width: 1025px) {
     .mainContainer{
         /* grid-template-rows: repeat(auto, minmax(100px, auto)); */
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr;
     }
     .imageContainer{
@@ -96,9 +109,32 @@
         grid-column: 1 / -1 ; 
     }
     .skillsContainer{
+        grid-row: 4;
+        grid-column: 1 / -1;
+    }
+    .gpaContainer{
         grid-row: 3;
         grid-column: 1 / -1;
     }
+    .pStyle{
+        font-size: 2vh;
+    }
+    .eduFont{
+        font-size: 2vh; 
+    }
+    /* .headStyle{
+        font-size: x-large;
+    } */
+}
+
+@media (max-width: 768px) {
+    /* .pStyle{
+        font-size: 1.75vh;
+    }
+
+    .eduFont{
+        font-size: 1.75vh;
+    } */
     /* .headStyle{
         font-size: x-large;
     } */
