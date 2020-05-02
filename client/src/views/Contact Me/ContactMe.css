@@ -1,7 +1,6 @@
-.fullWebpage{
+/* .fullWebpage{
     width: 100vw;
-    height: 100vh;
-}
+} */
 
 .dropDivAlign{
     display: flex;
@@ -11,14 +10,16 @@
     background-color: #66A7D5;
 }
 
-.boxCenter{
+/* .boxCenter{
     padding-top: 10vh;
-    width: 50vw;
-    height: 10vw;
+    width: 60vw;
+    height: 20vw;
     text-align: center;
-    /* background-color: lightcyan; */
+  
+} */
+.coloe{
+   background-color: #E29470;
 }
-
 .containerDivison{
     display: flex;
     flex-direction: row;
