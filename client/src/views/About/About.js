@@ -47,8 +47,8 @@ const About = (props) => {
                 </div> */}
                 <Card style={{width: "100%"}} bg={'dark'} text={'white'}>
                 <br/>
-                <Card.Title>About Me</Card.Title>
-                <Card.Body>I am Soham Kale. I am currently a Senior at University of Florida, Gainesville, FL, majoring in Computer Science. I plan on graduating in Fall 2020.
+                <h4 className="headStyle">About Me</h4>
+                <Card.Body className="pStyle">I am Soham Kale. I am currently a Senior at University of Florida, Gainesville, FL, majoring in Computer Science. I plan on graduating in Fall 2020.
                    I also graduated with an Associates in Arts degree in Computer Science and an honors certificate from Valencia college, Orlando, FL. 
                    I am looking for a full-time job opportunity starting from Spring 2021. 
                    As part of my degree, I have taken several programming classes that have made me proficient in various programming languages like Java, C, and C++. 
@@ -62,14 +62,14 @@ const About = (props) => {
                 </Card>
             </div>
             <div className="skillsContainer bg-dark">
-                <h4>My most important skills</h4>
+                <h4 className="headStyle">My most important skills</h4>
             
             {/* <div class="row no-gutters">
             <label className="col-sm-1 bg-dark text-white labelHeight">React</label>
             <ProgressBar className="col-sm-11" variant="success" label={`${react}%`} now={40} />
             </div> */}
 
-            <Container fluid>
+            <Container fluid className="pStyle">
             <Row>
                 <Col xs={labelCol} className="labelHeight">React</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={react} /></Col>
@@ -120,7 +120,7 @@ const About = (props) => {
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={40} /></Col>
             </Row>
             <div className="smallDivision"></div> */}
-            <Row>
+            {/* <Row>
                 <Col xs={labelCol} className="labelHeight">Android Studio</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${AS}%`} now={AS} /></Col>
             </Row>
@@ -129,7 +129,7 @@ const About = (props) => {
                 <Col xs={labelCol} className="labelHeight">PHP</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${PHP}%`} now={PHP} /></Col>
             </Row>
-            <div className="smallDivision"></div>
+            <div className="smallDivision"></div> */}
             <Row>
                 <Col xs={labelCol} className="labelHeight">.Net</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Net}%`} now={Net} /></Col>

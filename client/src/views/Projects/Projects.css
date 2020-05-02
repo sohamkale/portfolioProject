@@ -8,19 +8,27 @@
 }
 
 .project1{
-    background: #7dcc93;
+    /* background: #7dcc93; */
+    background-color: pink;
 }
+
+.project2{
+    /* background: #f76160; */
+    /* background-color: lightcoral; */
+    background-color: #f8c687;
+}
+
 .a{
     max-width: 100vw;
     max-height: 100vh;
 }
-.project2{
+/* .project2{
     background-color: cornflowerblue;
  
-}
+} */
 
 .project3{
-    background-color: crimson;
+    background-color: #31355b;
 }
 
 .project4{
