@@ -1,12 +1,9 @@
-
-
-
 .backImage {
     width: 100vw;
     height: 112vh;
     background-image: url(https://coolbackgrounds.io/images/unsplash/samuel-zeller-medium-b832fe04.jpg);
 }
-embed{
+.embed{
     display: flex;
     height: 105vh;
 }
@@ -23,6 +20,11 @@ embed{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.customDiv{
+    width: 100vw;
+    height: 150vh;
 }
 
 .squareShape{
@@ -51,13 +53,36 @@ img{
     }
     .squareShape{
         /* background-color: lightgreen; */
-        padding-top: 15vh;
+        padding-top: 10vh;
         width: 80vw; 
+        height: 100vh;
+    }
+    .centeredDivParent{
+        height: 85vh;
+    }
+}
+
+@media (max-width: 769px) {
+    .center{
+        padding-left: 0%;
+    }
+    embed{
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+    }
+    .squareShape{
+        /* background-color: lightgreen; */
+        padding-top: 5vh;
+        width: 100vw; 
+        height: 100vh;
+    }
+    .centeredDivParent{
         height: 100vh;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .center{
         padding-left: 0%;
     }
@@ -71,5 +96,8 @@ img{
         padding-top: 15vh;
         width: 100vw; 
         height: 100vh;
+    }
+    .centeredDivParent{
+        height: 80vh;
     }
 }

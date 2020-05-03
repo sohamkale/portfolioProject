@@ -61,9 +61,9 @@ const Home = () => {
                 <h2>About Me</h2>
                 <p>I am Soham Kale. I am currently a Senior at University of Florida. I plan on graduating in Fall 2020. I am looking for a full-time job opportunity starting from Spring 2021. I am very passionate about computer science.</p>
             </div> */}
-            <div className="footer">
-                <Footer/>
-                </div>  
+            {/* <div className="footer">
+               <Footer/>
+                </div>   */}
         </main>  
     );
 }
