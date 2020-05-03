@@ -8,7 +8,7 @@ import ResumeCard from "./../../components/ResumeCard/ResumeCard";
 import image from "../../components/image/backImage2.jpg"
 import { MDBIcon } from "mdbreact";
 import myImage from "./pic.png";
-
+import Footer from "./../../components/Footer/Footer.js";
 import { Icon } from 'semantic-ui-react';
 
 import { useMediaPredicate } from "react-media-hook";
@@ -191,11 +191,19 @@ const About = (props) => {
                 <Col xs={labelCol} className="labelHeight">Various IDE's</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={40} /></Col>
             </Row> */}
+            <Row>
+            <div className="bigDivision"></div>
+            </Row>
             </Container>
-            
-            
             </div>
-           
+            <Container fluid className="bg-white lastfoot text-center">
+                <Row>
+                    <Col sm={12}>
+                    <Footer/>
+                    </Col>
+                </Row>
+               
+            </Container>
         </div>
     );
 }
