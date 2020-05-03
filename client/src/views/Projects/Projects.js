@@ -10,6 +10,7 @@ import gif2 from "./gif2.gif";
 import portfolioApp from "./../Projects/portfoliowebapp.png";
 import PCard from "./../Contact Me/PCard.js";
 import Card from "./../../components/Card/Card.js";
+import Footer from "./../../components/Footer/Footer.js";
 const Projects = (props) => {
     return (
         <div className="bg-dark fullWebpage">
@@ -61,6 +62,7 @@ const Projects = (props) => {
                 Created 4 virtual robots each with unique strategies and defense techniques. The robots could change their tactics depending on the opponent robot's position and attacking mechanism.
                 We used external libraries, and also worked with already existing code to modify/add code to improve the performance of the robots."/>
             </Row>
+            
             </Container>
            
             {/* <Container fluid className="bg-danger fullWebpage">
@@ -80,10 +82,13 @@ const Projects = (props) => {
                 </Row>
                
             </Container> */}
-          
+         <Container fluid className="bg-white text-center">
+            <Footer/>
+         </Container>
     
 
         </div>
+
     );
 }
 export default Projects;

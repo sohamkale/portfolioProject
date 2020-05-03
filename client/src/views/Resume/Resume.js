@@ -3,6 +3,7 @@ import "./Resume.css";
 import ResumeCard from "./../../components/ResumeCard/ResumeCard"
 import { useMediaPredicate } from "react-media-hook";
 import {Button, Container, Row, Col, ResponsiveEmbed} from 'react-bootstrap';
+import Footer from "./../../components/Footer/Footer.js";
 import ResumePic from "./Resume.png";
 const Resume = () => {
     const [cardWidth, setCardWidth] = useState('50vw');
@@ -22,12 +23,15 @@ const Resume = () => {
         //         <Button>Download</Button>
         //     </div>
         // </div>
-        <div >
+        // <div className=" bg-dark customDiv">
+        <div>
             <Container fluid className="bg-dark centeredDivParent">
                 <div className="squareShape">
                     <img src={ResumePic} class="img-fluid" alt="Responsive image"/>  
                 </div>
-
+            </Container>
+            <Container fluid className="bg-white text-center">
+                <Footer/>
             </Container>
         </div>
         
