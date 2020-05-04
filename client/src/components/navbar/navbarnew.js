@@ -29,6 +29,8 @@ const Navbarcomp = () => {
              <Nav.Link href="/about">About</Nav.Link>
              <Nav.Link href="/projects">Projects</Nav.Link>
             <Nav.Link href="/resume">Resume</Nav.Link>
+            <Nav.Link href="/Login">Login</Nav.Link>
+            <Nav.Link href="/Signup">Signup</Nav.Link>
              {/* <Nav.Link href="/contact">Contact Me</Nav.Link> */}
 </ReactBootStrap.Nav>
 </ReactBootStrap.Navbar.Collapse>

@@ -30,6 +30,8 @@ import Resume from "./views/Resume/Resume.js";
 import Projects from "./views/Projects/Projects.js";
 import ContactMe from "./views/Contact Me/ContactMe.js";
 import Navbar from "./components/navbar/navbarnew.js";
+import LoginApp from "./views/Login/LoginApp";
+import Signup from "./views/Signup/Signup";
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
@@ -50,10 +52,9 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route exact path="/projects" component={Projects} />
             {/* <Route exact path="/contact" component={ContactMe} /> */}
-            {/* <Route exact path="/Projects" component={Services} />
-            <Route exact path="/Login" component={LoginHome} />
+            <Route exact path="/Login" component={LoginApp} />
             <Route exact path="/Signup" component={Signup} />
-            <Route exact path="/delete" component={DeleteImage}/> */}
+            {/* <Route exact path="/delete" component={DeleteImage}/> */}
             {/* remove this above line */}
             <Route exact path="/">
               <Redirect to="/Home" />

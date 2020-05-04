@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Footer from "./../../components/Footer/Footer.js";
 import { useMediaPredicate } from "react-media-hook";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import fire from "./../../config/Fire";
+import * as firebase from 'firebase';
 //import 'semantic-ui-css/semantic.min.css'
 const Home = () => {
     const[a, seta] = useState(null);
@@ -15,6 +17,33 @@ const Home = () => {
     const onClick = e => {
         window.location.href="/projects";
     }
+
+    // useEffect (() => {
+    //     var userObj = fire.auth().currentUser;
+    //     fire.auth().onAuthStateChanged(function(user) {
+    //         if (user) {
+                
+    //         } else {
+    //         }
+    //       }); 
+    // }, [])
+
+    const func = () => {
+        alert("Hi");
+        var userObj = fire.auth().currentUser;
+        fire.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                alert("user");
+                return<div><Button onClick="logout">Logout</Button></div> ;
+            } else {
+            }
+          }); 
+    }
+
+    const logout = () => {
+        fire.auth().signOut();
+    }
+
     return (
         <main class="wrapper">
             
@@ -50,6 +79,7 @@ const Home = () => {
                 </h1>
                 <div className="buttonDiv">
                 <Button onClick={onClick}>View my work</Button>
+                <div> <Button onClick={logout}>Logout</Button></div>
                 </div>
             </div>
             
