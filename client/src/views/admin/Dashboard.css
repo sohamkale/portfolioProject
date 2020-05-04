@@ -1,0 +1,19 @@
+.fullWidthDiv{
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    
+}
+.fullWidthDivChildren{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+/* .fullWidthDivChildren1{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+} */

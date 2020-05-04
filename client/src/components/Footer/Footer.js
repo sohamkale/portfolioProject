@@ -1,30 +1,66 @@
-import React from "react";
+import React, {useState, useEffect, useLayoutEffect} from "react";
 import { MDBCol, MDBBtn, MDBContainer, MDBRow, MDBFooter, MDBIcon } from "mdbreact";
-
+import fire from "../../config/Fire";
 const Footer = () => {
+  const [address, setAddress] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [phoneNum, setPhoneNum] = useState(null);
+  const [userUid, setUserUid] = useState(null);
+  var db = fire.database();
+  var refFooter = db.ref(`${userUid}/FooterPage`);
+
+  useEffect (() => {
+      fire.auth().onAuthStateChanged(function(user) {
+          if (user) {
+              setUserUid(user.uid);
+          } else {
+          }
+        }); 
+  }, []);
+
+  useLayoutEffect (() => {
+      refFooter.on("value", function(userSnapshot) {
+          userSnapshot.forEach(function(snapshot) {
+              if(snapshot.key === "address"){
+                  setAddress(snapshot.val());
+              }else if(snapshot.key === "email"){
+                  setEmail(snapshot.val());
+              }else if(snapshot.key === "firstName"){
+                  setFirstName(snapshot.val());
+              }else if(snapshot.key === "lastName"){
+                  setLastName(snapshot.val());
+              }else if(snapshot.key === "phoneNum"){
+                  setPhoneNum(snapshot.val());
+              }
+          });
+      });
+  }, [userUid]);
+
   return (
     
     <MDBFooter color="blue" className="font-small pt-4 mt-4">
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="6">
-            <h5 className="title">Soham Kale</h5>
+            <h5 className="title">{firstName} {lastName}</h5>
             <p>
-              Address: 1521 S. Kirkman Rd. Orlando, FL 32811
+              {address}
             </p>
           </MDBCol>
           <MDBCol md="6">
            <h5 className="title">Contact Me</h5>
             <ul>
               <li className="list-unstyled">
-              Phone: (407) 956-7350
+              Phone: {phoneNum}
               </li>
               <li className="list-unstyled">
-              Email Address 1: sohamkale@ufl.edu
+              Email Address: {email}
               </li>
-              <li className="list-unstyled">
+              {/* <li className="list-unstyled">
               Email Address 2: soham.kale2412@gmail.com
-              </li>
+              </li> */}
             </ul>
           </MDBCol>
         </MDBRow>

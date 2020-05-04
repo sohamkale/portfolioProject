@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useLayoutEffect } from "react"
 import "./About.css";
 import Card from 'react-bootstrap/Card';
 import {Container, Row, Col} from 'react-bootstrap';
@@ -10,7 +10,7 @@ import { MDBIcon } from "mdbreact";
 import myImage from "./pic.png";
 import Footer from "./../../components/Footer/Footer.js";
 import { Icon } from 'semantic-ui-react';
-
+import fire from "../../config/Fire";
 import { useMediaPredicate } from "react-media-hook";
 const About = (props) => {
     let react = 75, CSS = 65, HTML = 75, C = 80, Java = 80, JS = 75, Node = 60, Git = 75, Firebase = 70, AS = 40;
@@ -18,6 +18,54 @@ const About = (props) => {
     const [labelCol, setLabelCol] = useState(2);
     const [progressBarCol, setProgressBarCol] = useState(10);
     const isMobile = useMediaPredicate("(max-width: 768px)");
+
+    const [description, setDescription] = useState(null);
+    const [userUid, setUserUid] = useState(null);
+    var db = fire.database();
+    var refAbout = db.ref(`${userUid}/About`);
+
+    var refEducation = db.ref(`${userUid}/About/Education`);
+    const [university, setUniversity] = useState(null);
+    const [college, setCollege] = useState(null);
+    const [degree, setDegree] = useState(null);
+    const [major, setMajor] = useState(null);
+    const [gpa, setGpa] = useState(null);
+
+    useEffect (() => {
+        fire.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                setUserUid(user.uid);
+            } else {
+            }
+          }); 
+    }, [])
+
+    useLayoutEffect (() => {
+        refAbout.on("value", function(userSnapshot) {
+            userSnapshot.forEach(function(snapshot) {
+                if(snapshot.key === "description"){
+                    setDescription(snapshot.val());
+                }
+            });
+        });
+
+        refEducation.on("value", function(userSnapshot) {
+            userSnapshot.forEach(function(snapshot) {
+                if(snapshot.key === "collegeName"){
+                    setCollege(snapshot.val());
+                }else if(snapshot.key === "degree"){
+                    setDegree(snapshot.val());
+                }else if(snapshot.key === "gpa"){
+                    setGpa(snapshot.val());
+                }else if(snapshot.key === "major"){
+                    setMajor(snapshot.val());
+                }else if(snapshot.key === "universityName"){
+                    setUniversity(snapshot.val());
+                }
+            });
+        });
+    }, [userUid])
+
     useEffect(() => {
         if(isMobile){
             setLabelCol(3);
@@ -51,27 +99,20 @@ const About = (props) => {
                 <Card style={{width: "100%"}} bg={'dark'} text={'white'}>
                 <br/>
                 <h4 className="headStyle">About Me</h4>
-                <Card.Body className="pStyle">I am Soham Kale. I am currently a Senior at University of Florida, Gainesville, FL, majoring in Computer Science. I plan on graduating in Fall 2020.
-                   I also graduated with an Associates in Arts degree in Computer Science and an honors certificate from Valencia college, Orlando, FL. 
-                   I am looking for a full-time job opportunity starting from Spring 2021. 
-                   As part of my degree, I have taken several programming classes that have made me proficient in various programming languages like Java, C, and C++. 
-                   I have developed strong problem-solving skills through these classes and various projects. 
-                   I am very enthusiastic to learn new skills on my own.
-                   I have worked in various teams throughout my college life and also led a few teams which has made me a really good team player.
-                   I am very passionate about computer science. In addition to doing projects for my classes, I have also done a few outside projects which have helped me improve and strengthen my skills. 
-                   I am very meticuluous with my work and put in my full efforts whenever I am doing something. 
-                   I think this attitude will help me do a fantastic job at any position and at any company. 
+                <Card.Body className="pStyle">{description} 
                 </Card.Body>
                 </Card>
             </div>
             <div className="gpaContainer bg-dark eduFont border-bottom">
                 
                 <h4>Education</h4>
-                
-                <ul><b><u>University of Florida, Gainesville, FL</u></b>
-                    <li>Bachelor's Degree (December 2020)</li>
-                    <li>Computer Science - Herbert Wertheim College of Engineering</li>
-                    <li>GPA: 3.95</li>
+                {/* <u>University of Florida, Gainesville, FL</u> */}
+                <ul><b><u>{university}</u></b>
+                    {/* <li>Bachelor's Degree (December 2020)</li> */}
+                    <li>{degree} Degree</li>
+                    {/* <li>Computer Science - Herbert Wertheim College of Engineering</li> */}
+                    <li>{major} - {college}</li>
+                    <li>{gpa}</li>
                 </ul>
                 <ul><b><u>Valencia Community College, Orlando, FL</u></b>
                     <li>Associates in Arts Degree (August 2018)</li>
