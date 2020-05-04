@@ -46,8 +46,10 @@ const Signup = (props) => {
                 email: email.toLowerCase(),
                 Home: {
                     typeWriterName: firstName + " " + lastName,
-                    initials: firstName[0] + lastName[0],
                     homeImage: "null"
+                },
+                Navbar: {
+                    initials: firstName[0] + lastName[0]
                 },
                 About: {
                     aboutImage: "null",

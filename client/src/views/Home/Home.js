@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useLayoutEffect, useState } from "react"
 import "./Home.css";
 import Navbar from "../../components/navbar/navbar.js";
 import Image from "../../components/image/image.js";
@@ -13,20 +13,56 @@ import * as firebase from 'firebase';
 const Home = () => {
     const[a, seta] = useState(null);
     const isMobile = useMediaPredicate("(max-width: 768px)");
-
+    const [userUid, setUserUid] = useState(null);
+    const [typeWriterName, setTypeWriterName] = useState("");
+    // const [initials, setInitials] = useState("");
+    const [homeImage, setHomeImage] = useState("");
+    const [shouldDo, setShouldDo] = useState(false);
     const onClick = e => {
         window.location.href="/projects";
     }
 
-    // useEffect (() => {
-    //     var userObj = fire.auth().currentUser;
-    //     fire.auth().onAuthStateChanged(function(user) {
-    //         if (user) {
+    useEffect (() => {
+        fire.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                setUserUid(user.uid);
+            } else {
+            }
+          }); 
+    }, [])
+
+    useLayoutEffect (() => {
+        // alert(userUid);
+        var db = fire.database();
+        var ref = db.ref(`${userUid}/Home`);
+        console.log(ref);
+        ref.on("value", function(userSnapshot) {
+            userSnapshot.forEach(function(snapshot) {
+                // if(snapshot.key === "initials"){
+                //     // alert(snapshot.val());
+                //     setInitials(snapshot.val());
+                // }
+                if(snapshot.key === "typeWriterName"){
+                    // alert(snapshot.val());
+                    setTypeWriterName(snapshot.val());
+                    
+                }
+                if(snapshot.key === "homeImage"){
+                    // alert(snapshot.value);
+                    setHomeImage(snapshot.val());
+                }
                 
-    //         } else {
-    //         }
-    //       }); 
-    // }, [])
+                console.log(snapshot);
+            });
+        });
+    }, [userUid != null])
+
+    useEffect (() => {
+        if(typeWriterName != ""){
+            setShouldDo(true);
+        }
+    }, [typeWriterName])
+
 
     const func = () => {
         alert("Hi");
@@ -52,10 +88,10 @@ const Home = () => {
                 {/* {isMobile ?  null : <Image/>}    */}
                 {/* <h2 className="imageText">Hi...I am Soham Kale!!</h2> */}
                 <h1 className="imageText">
-                <Typewriter
+                {shouldDo ? <Typewriter
                     onInit={(typewriter) => {
                         typewriter.changeDelay(40);
-                        typewriter.typeString('Hello, I am Soham Kale!')
+                        typewriter.typeString(`Hello, I am ${typeWriterName}!`)
                         .callFunction(() => {
                             console.log('String typed out!');
                         })
@@ -75,7 +111,7 @@ const Home = () => {
                         autoStart: true,
                         loop: true,
                       }}
-                />
+                /> : null}
                 </h1>
                 <div className="buttonDiv">
                 <Button onClick={onClick}>View my work</Button>
