@@ -5,17 +5,19 @@ import AboutCard from "../../components/DashCard/AboutCard/AboutCard";
 import FooterCard from "../../components/DashCard/FooterCard/FooterCard";
 import FooterLinks from "../../components/DashCard/FooterCard/FooterLinks";
 import EducationCard from "../../components/DashCard/AboutCard/EducationCard";
-import EducationCards from "../../components/DashCard/AboutCard/EducationCards";
+// import EducationCards from "../../components/DashCard/AboutCard/EducationCards";
+// import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire from "./../../config/Fire";
 import { useId } from "react-id-generator";
 import "./Dashboard.css";
 const Dashboard = (props) => {
-    let id = useId();
-    const [uniCount, setUniCount] = useState(1);
+    // let id = useId();
+    // const [uniCount, setUniCount] = useState(1);
     const [userUid, setUserUid] = useState(null);
+    // const [eduCardsArray, setEduCardsArray] = useState([]);
     var db = fire.database();
     var refEducation = db.ref(`${userUid}/About/Education`);
-    const [uniqueIDs, setUniqueIDs] = useState([]);
+    // const [uniqueIDs, setUniqueIDs] = useState([]);
     // const addUniversity = (e) => {
         
     //     setUniqueIDs(uniqueIDs.concat(id));
@@ -38,6 +40,9 @@ const Dashboard = (props) => {
                     <Col mb={6}>
                         <EducationCard/>
                     </Col>
+                    {/* <Col mb={6}>
+                        <EduCard/>
+                    </Col> */}
                     {/* <Col mb={6}>
                         <EducationCards
                         uniqueIDs={uniqueIDs}

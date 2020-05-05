@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 // import "./DashCard.css";
 import fire from "./../../../config/Fire";
-const EducationCards = (props) => {
+const EdCard = (props) => {
     const [university, setUniversity] = useState(null);
     const [college, setCollege] = useState(null);
     const [degree, setDegree] = useState(null);
@@ -67,9 +67,7 @@ const EducationCards = (props) => {
         'gpa': gpa});
     }
 
-   let EducationCards = [];
-   for(let i = 0; i < props.cardNum; i++){
-       EducationCards.push(
+    return(
 <Card style={{ width: '18rem' }}>
 <Card.Img variant="top" />
 <Card.Body>
@@ -79,7 +77,7 @@ const EducationCards = (props) => {
     <InputGroup.Prepend>
       <InputGroup.Text id="basic-addon1">University:</InputGroup.Text>
     </InputGroup.Prepend>
-    <Form.Control id={props.uniqueIDs[i]} onChange={onUniversityChange} type="text" placeholder={university} />
+    <Form.Control onChange={onUniversityChange} type="text" placeholder={university} />
   </InputGroup>
 
   <InputGroup className="mb-3">
@@ -111,10 +109,9 @@ const EducationCards = (props) => {
   </InputGroup>
   <Button onClick={onClickSave} variant="primary">Save</Button>
 </Card.Body>
-</Card>)
-   }
-   return EducationCards;
+</Card>
+    );
     
 }
 
-export default EducationCards;
+export default EdCard;
