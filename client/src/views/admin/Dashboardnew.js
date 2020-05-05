@@ -31,9 +31,9 @@ const DashboardNew = (props) => {
     const [fieldsArray, setFieldsArray] = useState([{
     }]);
     const addUniversity = (e) => {
-        alert("Inside add");
+        // alert("Inside add");
         let newArray = [...actualEduCardsArray];
-        setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
+        setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM (looks like it is fixed as of now)
         setToggleAdd(true);
         let newObj = {
             'id': (uniqueIdCount + 1).toString(),
@@ -53,7 +53,7 @@ const DashboardNew = (props) => {
     }
 
     const onClickDelete = (e) => {
-        alert(e.target.id);
+        // alert(e.target.id);
         setIsDelete(true);
         setIndexToDelete(e.target.id);
         setNumOfCards(numOfCards - 1);
@@ -119,7 +119,7 @@ useEffect (() => {
                     'major': d,
                     'gpa': c,
                 })) //NEED TO MAKE SURE THIS IS UPDATED BEFORE APPENDING IT TO THE ACTUAL ARRAY
-                alert("snapshot.key: " + snapshot.key);
+                // alert("snapshot.key: " + snapshot.key);
                 setUniqueIdCount(parseInt(snapshot.key));
             });
         });
@@ -141,7 +141,7 @@ useEffect (() => {
 
     useLayoutEffect (() => {
         if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards && toggleAdd ){
-            alert("INSIDE eduCARDSEFFECT " + toggleAdd)
+            // alert("INSIDE eduCARDSEFFECT " + toggleAdd)
              setUniqueIdCount(uniqueIdCount + 1);
              setNumOfCards(numOfCards + 1);
             //  alert(actualEduCardsArray);
@@ -162,7 +162,7 @@ useEffect (() => {
     }, [actualEduCardsArray])
 
     useEffect(() => {
-         alert("uniqueID: " + uniqueIdCount);
+        //  alert("uniqueID: " + uniqueIdCount);
     }, [uniqueIdCount])
     return (
         <div className="fullWidthDiv">

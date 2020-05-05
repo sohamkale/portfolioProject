@@ -41,9 +41,9 @@ const EdCard = (props) => {
     //     });
     // }, [userUid])
 
-    useLayoutEffect (() => {  //PROBLEM: ARRAY IS CONCATTED EVEN WHEN A DELETE IS PERFORMED
+    useLayoutEffect (() => {  //PROBLEM: ARRAY IS CONCATTED EVEN WHEN A DELETE IS PERFORMED (looks like it is fixed)
         if(props.eduCardsArraynew != "" && !props.isDelete){
-             alert("Inside concat: " + props.isDelete + " Add: " + props.toggleAdd) //Normal - delete: false, add: true
+            //  alert("Inside concat: " + props.isDelete + " Add: " + props.toggleAdd) //Normal - delete: false, add: true
              console.log("Inside concat Array:");
              console.log(array);
              console.log(props.eduCardsArraynew);
