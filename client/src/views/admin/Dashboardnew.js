@@ -19,6 +19,7 @@ const DashboardNew = (props) => {
     const [major, setMajor] = useState(null);
     const [gpa, setGpa] = useState(null);
     const [shouldPush, setShouldPush] = useState(false);
+    const [numOfCards, setNumOfCards] = useState(0);
     const [uniqueIdCount, setUniqueIdCount] = useState(0);
     const [userUid, setUserUid] = useState(null);
     const [eduCardsArray, setEduCardsArray] = useState([]); //array to hold universityNames
@@ -27,11 +28,26 @@ const DashboardNew = (props) => {
     var refEducation = db.ref(`${userUid}/About/Education`);
     const [fieldsArray, setFieldsArray] = useState([{
     }]);
-    // const addUniversity = (e) => {
-        
-    //     setUniqueIDs(uniqueIDs.concat(id));
-    //     setUniCount(uniCount + 1);
-    // }
+    const addUniversity = (e) => {
+        alert("Inside add");
+        let newArray = [...actualEduCardsArray];
+        setNumOfCards(numOfCards + 1);
+        let newObj = {
+            'id': (uniqueIdCount + 1).toString(),
+            'university': "",
+            'college': "",
+            'degree': "",
+            'major': "",
+            'gpa': "",
+        }
+        console.log("Before concat: " + newArray);
+        newArray = newArray.concat(newObj);
+
+        console.log("After concat: " + newArray);
+        setActualEduCardsArray(newArray);
+        // setUniqueIDs(uniqueIDs.concat(id));
+        // setUniCount(uniCount + 1);
+    }
 useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -42,7 +58,7 @@ useEffect (() => {
     }, []);
 
     useLayoutEffect (() => {
-        alert("in setEduCards");
+        // alert("in setEduCards");
         refEducation.on("value", function(userSnapshot) {
             userSnapshot.forEach(function(snapshot) {
                 let a, b, c, d, e;
@@ -72,8 +88,9 @@ useEffect (() => {
     }, [userUid])
 
     useLayoutEffect (() => {
-        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != uniqueIdCount){
+        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards){
              setUniqueIdCount(uniqueIdCount + 1);
+             setNumOfCards(numOfCards + 1);
             //  alert(actualEduCardsArray);
             //  console.log(eduCardsArray)
              setActualEduCardsArray(actualEduCardsArray.concat(eduCardsArray))
@@ -85,8 +102,8 @@ useEffect (() => {
             // setUniqueIdCount(uniqueIdCount + 1);
         //     alert(actualEduCardsArray);
         // }
-        
-        // console.log(actualEduCardsArray);
+        console.log(uniqueIdCount);
+         console.log(actualEduCardsArray);
     }, [actualEduCardsArray])
 
     useEffect(() => {
@@ -101,7 +118,7 @@ useEffect (() => {
                     </Col>
                 </Row>
                 <Row className="text-center text-white">Update About Page</Row>
-                {/* <Row className="text-center text-white"><Button onClick={addUniversity}>Add Previous University</Button></Row> */}
+                <Row className="text-center text-white"><Button onClick={addUniversity}>Add Previous University</Button></Row>
                 <Row className="bg-danger">
                     <Col mb={6}>
                         <AboutCard/>
