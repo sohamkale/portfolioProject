@@ -31,7 +31,27 @@ const DashboardNew = (props) => {
     const [fieldsArray, setFieldsArray] = useState([{
     }]);
     const addUniversity = (e) => {
-        alert("Inside add");
+        // alert("Inside add");
+        if(uniqueIdCount === 0 && numOfCards === 0) {
+            // alert("Inside if in add");
+            let newArray = [...eduCardsArray];
+            // setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
+            setToggleAdd(true);
+            let newObj = {
+                'id': (uniqueIdCount + 1).toString(),
+                'university': "",
+                'college': "",
+                'degree': "",
+                'major': "",
+                'gpa': "",
+            }
+            console.log("Before concat: " + newArray);
+            newArray = newArray.concat(newObj);
+    
+            console.log("After concat: " + newArray);
+            setEduCardsArray(newArray);
+        }else{
+            // alert("Inside ELSE");
         let newArray = [...actualEduCardsArray];
         setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
         setToggleAdd(true);
@@ -48,12 +68,13 @@ const DashboardNew = (props) => {
 
         console.log("After concat: " + newArray);
         setActualEduCardsArray(newArray);
+    }
         // setUniqueIDs(uniqueIDs.concat(id));
         // setUniCount(uniCount + 1);
     }
 
     const onClickDelete = (e) => {
-        alert(e.target.id);
+        // alert(e.target.id);
         setIsDelete(true);
         setIndexToDelete(e.target.id);
         setNumOfCards(numOfCards - 1);
@@ -121,10 +142,11 @@ useEffect (() => {
                     'major': d,
                     'gpa': c,
                 })) //NEED TO MAKE SURE THIS IS UPDATED BEFORE APPENDING IT TO THE ACTUAL ARRAY
-                alert("snapshot.key: " + snapshot.key);
+                // alert("snapshot.key: " + snapshot.key);
                 setUniqueIdCount(parseInt(snapshot.key));
             });
             if(shouldSetToZero){
+                setEduCardsArray([])
                 setUniqueIdCount(0);
             }
         });
@@ -145,8 +167,8 @@ useEffect (() => {
     }
 
     useLayoutEffect (() => {
-        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards && toggleAdd ){
-            alert("INSIDE eduCARDSEFFECT " + toggleAdd)
+        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards && toggleAdd && eduCardsArray.length != 0){
+            // alert("INSIDE eduCARDSEFFECT " + toggleAdd)
              setUniqueIdCount(uniqueIdCount + 1);
              setNumOfCards(numOfCards + 1);
             //  alert(actualEduCardsArray);
@@ -167,7 +189,7 @@ useEffect (() => {
     }, [actualEduCardsArray])
 
     useEffect(() => {
-         alert("uniqueID: " + uniqueIdCount);
+        //  alert("uniqueID: " + uniqueIdCount);
     }, [uniqueIdCount])
     return (
         <div className="fullWidthDiv">

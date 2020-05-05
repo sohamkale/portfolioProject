@@ -43,7 +43,7 @@ const EdCard = (props) => {
 
     useLayoutEffect (() => {  //PROBLEM: ARRAY IS CONCATTED EVEN WHEN A DELETE IS PERFORMED
         if(props.eduCardsArraynew != "" && !props.isDelete){
-             alert("Inside concat: " + props.isDelete + " Add: " + props.toggleAdd) //Normal - delete: false, add: true
+            //  alert("Inside concat: " + props.isDelete + " Add: " + props.toggleAdd) //Normal - delete: false, add: true
              console.log("Inside concat Array:");
              console.log(array);
              console.log(props.eduCardsArraynew);
@@ -51,7 +51,7 @@ const EdCard = (props) => {
             setArray(array.concat(props.eduCardsArraynew[props.eduCardsArraynew.length - 1]));
         }else if(props.isDelete){
             setCount(count-1);
-             alert("outside concat: " + props.isDelete + " Add: " + props.toggleAdd)
+            //  alert("outside concat: " + props.isDelete + " Add: " + props.toggleAdd)
             console.log("outside concat Array:");
             console.log(array);
             let newDeletedArray = [...array];
@@ -180,8 +180,14 @@ const EdCard = (props) => {
     }
     let Array = [];
     props.eduCardsArraynew.map((element) => {
+        console.log("Full Array:");
+    
+        console.log(props.eduCardsArraynew);
+        console.log(element.university);
        Array.push(
+        
         <Card id={element.id} style={{ width: '18rem' }}>
+            <script>console.log(element.university)</script>
         <Card.Img variant="top" />
         <Card.Body>
             <Card.Title>Education Background</Card.Title>
@@ -226,7 +232,9 @@ const EdCard = (props) => {
         </Card>   
        )
     });
+
     return (Array);
+    
 }
 
 export default EdCard;
