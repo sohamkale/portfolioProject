@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import fire from "./../../config/Fire";
 import Login from './Login';
 import Dashboard from "../admin/Dashboard";
+import Dashboardnew from "../admin/Dashboardnew";
 // import Signup from '../Signup/Signup';
 // import AdminDash from "../AdminDash/AdminDash";
 // import Profile from "../UserProfile/profile.js";
@@ -43,7 +44,7 @@ class LoginApp extends Component {
       if(this.state.user.email === "admin@gmail.com"){ //change this to attractionSalonweb@gmail.com
         // return <AdminDash/>
       }else {
-        return <Dashboard/>
+        return <Dashboardnew/>
         // this.props.history.push('/home');
       }
     }else {
