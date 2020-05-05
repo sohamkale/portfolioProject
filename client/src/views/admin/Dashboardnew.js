@@ -18,6 +18,7 @@ const DashboardNew = (props) => {
     const [degree, setDegree] = useState(null);
     const [major, setMajor] = useState(null);
     const [gpa, setGpa] = useState(null);
+    const [indexToDelete, setIndexToDelete] = useState("");
     const [toggleAdd, setToggleAdd] = useState(true);
     const [isDelete, setIsDelete] = useState(false);
     const [numOfCards, setNumOfCards] = useState(0);
@@ -54,6 +55,7 @@ const DashboardNew = (props) => {
     const onClickDelete = (e) => {
         alert(e.target.id);
         setIsDelete(true);
+        setIndexToDelete(e.target.id);
         setNumOfCards(numOfCards - 1);
         refEducation.child(e.target.id).remove();
         let newDeletedArray = [...actualEduCardsArray];
@@ -178,6 +180,7 @@ useEffect (() => {
                     </Col>
                     <Col mb={6}>
                         <EdCard
+                        indexToDelete={indexToDelete}
                         toggleAddFunc={toggleAddFunc}
                         toggleAdd={toggleAdd}
                         increaseUniqueID={increaseUniqueID}
