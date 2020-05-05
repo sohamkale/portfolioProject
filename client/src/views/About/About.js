@@ -11,6 +11,7 @@ import myImage from "./pic.png";
 import Footer from "./../../components/Footer/Footer.js";
 import { Icon } from 'semantic-ui-react';
 import fire from "../../config/Fire";
+import AboutUniversities from "./AboutUniversities";
 import { useMediaPredicate } from "react-media-hook";
 const About = (props) => {
     let react = 75, CSS = 65, HTML = 75, C = 80, Java = 80, JS = 75, Node = 60, Git = 75, Firebase = 70, AS = 40;
@@ -25,12 +26,15 @@ const About = (props) => {
     var refAbout = db.ref(`${userUid}/About`);
 
     var refEducation = db.ref(`${userUid}/About/Education`);
+    // var refEducation = db.ref(`${userUid}/About/Education/2`);
     const [university, setUniversity] = useState(null);
     const [college, setCollege] = useState(null);
     const [degree, setDegree] = useState(null);
     const [major, setMajor] = useState(null);
     const [gpa, setGpa] = useState(null);
 
+    const [eduCardsArray, setEduCardsArray] = useState([]);
+    const [actualEduCardsArray, setActualEduCardsArray] = useState([]);
     useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -49,22 +53,76 @@ const About = (props) => {
             });
         });
 
+        // refEducation.on("value", function(userSnapshot) {
+        //     userSnapshot.forEach(function(snapshot) {
+        //         if(snapshot.key === "collegeName"){
+        //             setCollege(snapshot.val());
+        //         }else if(snapshot.key === "degree"){
+        //             setDegree(snapshot.val());
+        //         }else if(snapshot.key === "gpa"){
+        //             setGpa(snapshot.val());
+        //         }else if(snapshot.key === "major"){
+        //             setMajor(snapshot.val());
+        //         }else if(snapshot.key === "universityName"){
+        //             setUniversity(snapshot.val());
+        //         }
+        //     });
+        // });
+    }, [userUid])
+
+
+    useLayoutEffect (() => {
+        // alert("in setEduCards");
         refEducation.on("value", function(userSnapshot) {
+            let shouldSetToZero = true;
             userSnapshot.forEach(function(snapshot) {
-                if(snapshot.key === "collegeName"){
-                    setCollege(snapshot.val());
-                }else if(snapshot.key === "degree"){
-                    setDegree(snapshot.val());
-                }else if(snapshot.key === "gpa"){
-                    setGpa(snapshot.val());
-                }else if(snapshot.key === "major"){
-                    setMajor(snapshot.val());
-                }else if(snapshot.key === "universityName"){
-                    setUniversity(snapshot.val());
-                }
+                let a, b, c, d, e;
+                shouldSetToZero = false;
+                snapshot.forEach(function(snap) {
+                    if(snap.key === "collegeName"){
+                        a = snap.val();
+                    }else if(snap.key === "degree"){
+                        b = snap.val();
+                    }else if(snap.key === "gpa"){
+                        c = snap.val()
+                    }else if(snap.key === "major"){
+                        d = snap.val()
+                    }else if(snap.key === "universityName"){
+                        e = snap.val();
+                    }
+                })
+                setEduCardsArray(eduCardsArray.concat({
+                    'id': snapshot.key,
+                    'university': e,
+                    'college': a,
+                    'degree': b,
+                    'major': d,
+                    'gpa': c,
+                })) //NEED TO MAKE SURE THIS IS UPDATED BEFORE APPENDING IT TO THE ACTUAL ARRAY
+                // alert("snapshot.key: " + snapshot.key);
+                // setUniqueIdCount(parseInt(snapshot.key));
             });
+            if(shouldSetToZero){
+                // setEduCardsArray([])
+                // setUniqueIdCount(0);
+            }
         });
     }, [userUid])
+
+
+    useLayoutEffect (() => {
+        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray.length != 0){
+            // alert("INSIDE eduCARDSEFFECT " + toggleAdd)
+            //  setUniqueIdCount(uniqueIdCount + 1);
+            //  setNumOfCards(numOfCards + 1);
+            //  alert(actualEduCardsArray);
+            //  console.log(eduCardsArray)
+             setActualEduCardsArray(actualEduCardsArray.concat(eduCardsArray))
+        }else if (eduCardsArray != null && eduCardsArray != ""){
+            console.log(eduCardsArray);
+        }
+    }, [eduCardsArray])
+
 
     useEffect(() => {
         if(isMobile){
@@ -76,6 +134,7 @@ const About = (props) => {
         }
       }, [isMobile]);
 
+      
     return (
         <div className="mainContainer">
             <div className="imageContainer bg-dark">
@@ -106,11 +165,11 @@ const About = (props) => {
             <div className="gpaContainer bg-dark eduFont border-bottom">
                 
                 <h4>Education</h4>
-                {/* <u>University of Florida, Gainesville, FL</u> */}
-                <ul><b><u>{university}</u></b>
-                    {/* <li>Bachelor's Degree (December 2020)</li> */}
+               
+                {/* <ul><b><u>{university}</u></b>
+                    
                     <li>{degree} Degree</li>
-                    {/* <li>Computer Science - Herbert Wertheim College of Engineering</li> */}
+                    
                     <li>{major} - {college}</li>
                     <li>{gpa}</li>
                 </ul>
@@ -118,7 +177,8 @@ const About = (props) => {
                     <li>Associates in Arts Degree (August 2018)</li>
                     <li>Computer Science</li>
                     <li>GPA: 4.0</li>
-                </ul>
+                </ul> */}
+                <AboutUniversities actualEduCardsArray={actualEduCardsArray}/>
             </div>
             <div className="softSkillsContainer bg-dark eduFont border-bottom">
                 
