@@ -117,14 +117,7 @@ const EdCard = (props) => {
         setGpa(e.target.value);
     }
 
-    const onClickSave = (e) => {
-        // refEducation.child()
-        refEducation.update({'universityName': university,
-        'collegeName': college,
-        'degree': degree,
-        'major': major,
-        'gpa': gpa});
-    }
+    
 
     const onClickUpdate = (e) => {
         let uni ="null", col="null", deg="null", maj="null", GPA="null";
@@ -202,7 +195,7 @@ const EdCard = (props) => {
             </InputGroup.Prepend>
             <Form.Control id={element.id} onChange={onGpaChange}  type="text" placeholder={element.gpa} />
         </InputGroup>
-        <Button id={element.id} onClick={onClickSave} variant="primary">Delete</Button>
+        <Button id={element.id} onClick={props.onClickDelete} variant="primary">Delete</Button>
         <Button id={element.id} onClick={onClickUpdate} variant="primary">Save/Update</Button>
         </Card.Body>
         </Card>   

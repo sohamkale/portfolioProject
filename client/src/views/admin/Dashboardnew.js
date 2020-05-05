@@ -32,6 +32,7 @@ const DashboardNew = (props) => {
         alert("Inside add");
         let newArray = [...actualEduCardsArray];
         setNumOfCards(numOfCards + 1);
+        
         let newObj = {
             'id': (uniqueIdCount + 1).toString(),
             'university': "",
@@ -48,6 +49,38 @@ const DashboardNew = (props) => {
         // setUniqueIDs(uniqueIDs.concat(id));
         // setUniCount(uniCount + 1);
     }
+
+    const onClickDelete = (e) => {
+        alert(e.target.id);
+        setShouldPush(true);
+        setNumOfCards(numOfCards - 1);
+        refEducation.child(e.target.id).remove();
+        let newDeletedArray = [...actualEduCardsArray];
+        console.log("Before Deleting: " + newDeletedArray);
+        // newArray = newArray.concat(newObj);
+        newDeletedArray.map((ele, index) => {
+            if(ele.id === e.target.id){
+                newDeletedArray.splice(index, 1);
+            }
+        })
+        console.log("After Deletion: " + newDeletedArray);
+        setActualEduCardsArray(newDeletedArray);
+        
+        // refEducation.update({'universityName': university,
+        // 'collegeName': college,
+        // 'degree': degree,
+        // 'major': major,
+        // 'gpa': gpa});
+    }
+
+    useEffect(() => {
+        if(shouldPush){
+            console.log(numOfCards);
+            console.log(eduCardsArray);
+            console.log(actualEduCardsArray);
+        }
+    }, [shouldPush])
+
 useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -125,6 +158,7 @@ useEffect (() => {
                     </Col>
                     <Col mb={6}>
                         <EdCard
+                        onClickDelete={onClickDelete}
                         eduCardsArraynew={actualEduCardsArray}/>
                     </Col>
                     {/* <Col mb={6}>
