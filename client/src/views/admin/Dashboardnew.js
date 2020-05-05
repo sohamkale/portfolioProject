@@ -18,6 +18,7 @@ const DashboardNew = (props) => {
     const [degree, setDegree] = useState(null);
     const [major, setMajor] = useState(null);
     const [gpa, setGpa] = useState(null);
+    const [toggleAdd, setToggleAdd] = useState(true);
     const [isDelete, setIsDelete] = useState(false);
     const [numOfCards, setNumOfCards] = useState(0);
     const [uniqueIdCount, setUniqueIdCount] = useState(0);
@@ -32,7 +33,7 @@ const DashboardNew = (props) => {
         alert("Inside add");
         let newArray = [...actualEduCardsArray];
         setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
-        
+        setToggleAdd(true);
         let newObj = {
             'id': (uniqueIdCount + 1).toString(),
             'university': "",
@@ -116,6 +117,8 @@ useEffect (() => {
                     'major': d,
                     'gpa': c,
                 })) //NEED TO MAKE SURE THIS IS UPDATED BEFORE APPENDING IT TO THE ACTUAL ARRAY
+                alert("snapshot.key: " + snapshot.key);
+                setUniqueIdCount(parseInt(snapshot.key));
             });
         });
     }, [userUid])
@@ -125,12 +128,18 @@ useEffect (() => {
         setIsDelete(false);
     }
 
+    const toggleAddFunc = (e) => {
+        // setIsDelete(!isDelete);
+        setToggleAdd(false);
+    }
+
     const increaseUniqueID = (e) => {
         setUniqueIdCount(uniqueIdCount+1);
     }
 
     useLayoutEffect (() => {
-        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards){
+        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards && toggleAdd ){
+            alert("INSIDE eduCARDSEFFECT " + toggleAdd)
              setUniqueIdCount(uniqueIdCount + 1);
              setNumOfCards(numOfCards + 1);
             //  alert(actualEduCardsArray);
@@ -151,7 +160,7 @@ useEffect (() => {
     }, [actualEduCardsArray])
 
     useEffect(() => {
-        // alert(uniqueIdCount);
+         alert("uniqueID: " + uniqueIdCount);
     }, [uniqueIdCount])
     return (
         <div className="fullWidthDiv">
@@ -169,6 +178,8 @@ useEffect (() => {
                     </Col>
                     <Col mb={6}>
                         <EdCard
+                        toggleAddFunc={toggleAddFunc}
+                        toggleAdd={toggleAdd}
                         increaseUniqueID={increaseUniqueID}
                         isDelete={isDelete}
                         toggleDelete={toggleDelete}

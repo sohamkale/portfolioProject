@@ -43,13 +43,14 @@ const EdCard = (props) => {
 
     useLayoutEffect (() => {  //PROBLEM: ARRAY IS CONCATTED EVEN WHEN A DELETE IS PERFORMED
         if(props.eduCardsArraynew != "" && !props.isDelete){
-            alert("Inside concat")
+             alert("Inside concat")
             setCount(count+1);
             setArray(array.concat(props.eduCardsArraynew[props.eduCardsArraynew.length - 1]));
         }else if(props.isDelete){
-            alert("outside concat")
+             alert("outside concat")
             props.toggleDelete();
         }
+        
        
     }, [props.eduCardsArraynew])
 
@@ -127,7 +128,7 @@ const EdCard = (props) => {
         let uni ="null", col="null", deg="null", maj="null", GPA="null";
         array.map((element) => {
             if(element.id === e.target.id){
-                alert("Inside onClickUpdate");
+                // alert("Inside onClickUpdate");
                 // if(element.university != null && element.university != ""){
                 //     uni = element.university;
                 // }
@@ -156,7 +157,10 @@ const EdCard = (props) => {
         'degree': deg,
         'major': maj,
         'gpa': GPA});
-        props.increaseUniqueID();
+        if(props.toggleAdd){
+            props.toggleAddFunc();
+        }
+        // props.increaseUniqueID();
     }
     let Array = [];
     props.eduCardsArraynew.map((element) => {
