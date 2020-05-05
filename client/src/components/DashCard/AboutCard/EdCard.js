@@ -41,10 +41,14 @@ const EdCard = (props) => {
     //     });
     // }, [userUid])
 
-    useLayoutEffect (() => {
-        if(props.eduCardsArraynew != ""){
+    useLayoutEffect (() => {  //PROBLEM: ARRAY IS CONCATTED EVEN WHEN A DELETE IS PERFORMED
+        if(props.eduCardsArraynew != "" && !props.isDelete){
+            alert("Inside concat")
             setCount(count+1);
             setArray(array.concat(props.eduCardsArraynew[props.eduCardsArraynew.length - 1]));
+        }else if(props.isDelete){
+            alert("outside concat")
+            props.toggleDelete();
         }
        
     }, [props.eduCardsArraynew])
@@ -152,6 +156,7 @@ const EdCard = (props) => {
         'degree': deg,
         'major': maj,
         'gpa': GPA});
+        props.increaseUniqueID();
     }
     let Array = [];
     props.eduCardsArraynew.map((element) => {

@@ -18,7 +18,7 @@ const DashboardNew = (props) => {
     const [degree, setDegree] = useState(null);
     const [major, setMajor] = useState(null);
     const [gpa, setGpa] = useState(null);
-    const [shouldPush, setShouldPush] = useState(false);
+    const [isDelete, setIsDelete] = useState(false);
     const [numOfCards, setNumOfCards] = useState(0);
     const [uniqueIdCount, setUniqueIdCount] = useState(0);
     const [userUid, setUserUid] = useState(null);
@@ -31,7 +31,7 @@ const DashboardNew = (props) => {
     const addUniversity = (e) => {
         alert("Inside add");
         let newArray = [...actualEduCardsArray];
-        setNumOfCards(numOfCards + 1);
+        setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
         
         let newObj = {
             'id': (uniqueIdCount + 1).toString(),
@@ -52,7 +52,7 @@ const DashboardNew = (props) => {
 
     const onClickDelete = (e) => {
         alert(e.target.id);
-        setShouldPush(true);
+        setIsDelete(true);
         setNumOfCards(numOfCards - 1);
         refEducation.child(e.target.id).remove();
         let newDeletedArray = [...actualEduCardsArray];
@@ -74,12 +74,12 @@ const DashboardNew = (props) => {
     }
 
     useEffect(() => {
-        if(shouldPush){
+        if(isDelete){
             console.log(numOfCards);
             console.log(eduCardsArray);
             console.log(actualEduCardsArray);
         }
-    }, [shouldPush])
+    }, [isDelete])
 
 useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
@@ -120,6 +120,15 @@ useEffect (() => {
         });
     }, [userUid])
 
+    const toggleDelete = (e) => {
+        // setIsDelete(!isDelete);
+        setIsDelete(false);
+    }
+
+    const increaseUniqueID = (e) => {
+        setUniqueIdCount(uniqueIdCount+1);
+    }
+
     useLayoutEffect (() => {
         if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards){
              setUniqueIdCount(uniqueIdCount + 1);
@@ -127,6 +136,8 @@ useEffect (() => {
             //  alert(actualEduCardsArray);
             //  console.log(eduCardsArray)
              setActualEduCardsArray(actualEduCardsArray.concat(eduCardsArray))
+        }else if (eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id == numOfCards){
+            console.log(eduCardsArray);
         }
     }, [eduCardsArray])
 
@@ -158,6 +169,9 @@ useEffect (() => {
                     </Col>
                     <Col mb={6}>
                         <EdCard
+                        increaseUniqueID={increaseUniqueID}
+                        isDelete={isDelete}
+                        toggleDelete={toggleDelete}
                         onClickDelete={onClickDelete}
                         eduCardsArraynew={actualEduCardsArray}/>
                     </Col>
