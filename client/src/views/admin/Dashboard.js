@@ -5,6 +5,7 @@ import AboutCard from "../../components/DashCard/AboutCard/AboutCard";
 import FooterCard from "../../components/DashCard/FooterCard/FooterCard";
 import FooterLinks from "../../components/DashCard/FooterCard/FooterLinks";
 import EdCard from "../../components/DashCard/AboutCard/EdCard";
+import SoftSkillsCard from "../../components/DashCard/AboutCard/SoftSkillsCard";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire from "../../config/Fire";
 import { useId } from "react-id-generator";
