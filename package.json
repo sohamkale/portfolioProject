@@ -34,7 +34,8 @@
     "react-bootstrap-icons": "^1.0.1-alpha3",
     "react-id-generator": "^3.0.0",
     "should": "^13.2.3",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "uuid": "^8.0.0"
   },
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
 }
