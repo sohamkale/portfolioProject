@@ -1,6 +1,6 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
-// import "./DashCard.css";
+import "./ProjectsMain.css";
 const uuidv4 = require("uuid/v4");
 
 const ProjectsCards = (props) => {
@@ -40,7 +40,7 @@ const ProjectsCards = (props) => {
   let softSkillsArray = [];
   props.skillsArray.map((element, index) => {  //array is an object {id: num, skill: string}
     softSkillsArray.push(
-      <Card id={element.id} style={{ width: '18rem' }} key={uuidv4()}>
+      <Card id={element.id} className="ProjectsCardsDiv bg-info" style={{ width: '18rem' }} key={uuidv4()}>
       <Card.Img variant="top" />
       <Card.Body>
         <Card.Title>Projects</Card.Title>

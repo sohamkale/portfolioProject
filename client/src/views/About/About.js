@@ -52,22 +52,6 @@ const About = (props) => {
                 }
             });
         });
-
-        // refEducation.on("value", function(userSnapshot) {
-        //     userSnapshot.forEach(function(snapshot) {
-        //         if(snapshot.key === "collegeName"){
-        //             setCollege(snapshot.val());
-        //         }else if(snapshot.key === "degree"){
-        //             setDegree(snapshot.val());
-        //         }else if(snapshot.key === "gpa"){
-        //             setGpa(snapshot.val());
-        //         }else if(snapshot.key === "major"){
-        //             setMajor(snapshot.val());
-        //         }else if(snapshot.key === "universityName"){
-        //             setUniversity(snapshot.val());
-        //         }
-        //     });
-        // });
     }, [userUid])
 
 
@@ -112,11 +96,6 @@ const About = (props) => {
 
     useLayoutEffect (() => {
         if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray.length != 0){
-            // alert("INSIDE eduCARDSEFFECT " + toggleAdd)
-            //  setUniqueIdCount(uniqueIdCount + 1);
-            //  setNumOfCards(numOfCards + 1);
-            //  alert(actualEduCardsArray);
-            //  console.log(eduCardsArray)
              setActualEduCardsArray(actualEduCardsArray.concat(eduCardsArray))
         }else if (eduCardsArray != null && eduCardsArray != ""){
             console.log(eduCardsArray);

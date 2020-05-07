@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import fire from "./../../../config/Fire";
 import ProjectsCards from "./ProjectsCards.js";
-
+import "./ProjectsMain.css";
 const ProjectsMain = (props) => {
     const [skillsArray, setSkillsArray] = useState([]);
     const [uniqueId, setUniqueId] = useState(0);
@@ -76,13 +76,30 @@ const ProjectsMain = (props) => {
 //------------------------------------------------------------------------------------------------------------------------------
     return (
         <div>
-            <Button onClick={addSkill}>Add a new project</Button>
+            <Container fluid>
+                <Row>
+                    <Col md={12} className="text-center">
+                    <Button onClick={addSkill}>Add a new project</Button>
+                    </Col>
+                    <Col md={12} className="text-center">
+                    <br/>
+                    </Col>                
+                </Row>
+            </Container>
+            {/* <div className="ProjectsMainDivWrapper "> */}
+            <Container fluid className="bg-danger">
+            {/* <div className="ProjectsMainDiv justify-content-center"> */}
+            <Container fluid className="bg-dark ProjectsMainDiv">
             <ProjectsCards
                 deleteSkill={deleteSkill}
                 useUid = {userUid}
                 refAbout = {refAbout}
                 skillsArray = {skillsArray}
             />
+            {/* </div> */}
+            </Container>
+            </Container>
+            {/* </div> */}
         </div>
     )
 }

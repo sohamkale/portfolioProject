@@ -6,6 +6,7 @@ import FooterCard from "../../components/DashCard/FooterCard/FooterCard";
 import FooterLinks from "../../components/DashCard/FooterCard/FooterLinks";
 import EdCard from "../../components/DashCard/AboutCard/EdCard";
 import SoftSkillsCard from "../../components/DashCard/AboutCard/SoftSkillsCard";
+import ProjectsMain from "../../components/DashCard/ProjectsCards/ProjectsMain";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire from "../../config/Fire";
 import { useId } from "react-id-generator";
@@ -114,6 +115,11 @@ const Dashboard = (props) => {
                         refEducation={refEducation}
                         deleteUniversity={deleteUniversity}
                         eduCardsArray={uniCardsArray}/>
+                    </Col>
+                </Row>
+                <Row className="bg-info">
+                    <Col sm={12}>
+                        <ProjectsMain/>
                     </Col>
                 </Row>
                 <Row className="bg-dark">
