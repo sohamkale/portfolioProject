@@ -54,18 +54,22 @@ const Signup = (props) => {
                 About: {
                     aboutImage: "null",
                     description: "null",
-                    Education: {
-                        universityName: "ABCD",
-                        degree: "ABCD",
-                        major: "ABCD",
-                        collegeName: "ABCD",
-                        gpa: "0.00"
-                    },
+                    //Education:
+                        //uniqueId:
+                            //{
+                                //universityObjects
+                           // }
                     // SoftSkills: {
-
+                        //uniqueId:
+                            //{
+                                //softskillObjects
+                            //}
                     // },
                     // RelevantSkills: {
-
+                        //uniqueId:
+                            //{
+                                //relevantSkillObjects
+                            //}
                     // }
                 },
                 ProjectsPage: {

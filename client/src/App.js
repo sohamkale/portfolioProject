@@ -33,6 +33,7 @@ import Navbar from "./components/navbar/navbarnew.js";
 import LoginApp from "./views/Login/LoginApp";
 import Signup from "./views/Signup/Signup";
 import SoftSkills from "./components/DashCard/AboutCard/SoftSkills";
+import RelevantSkills from "./components/DashCard/AboutCard/RelevantSkills";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SoftSkillsCard from './components/DashCard/AboutCard/SoftSkillsCard';
 function App() {
@@ -57,6 +58,7 @@ function App() {
             <Route exact path="/Login" component={LoginApp} />
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/SoftSkills" component={SoftSkills} />
+            <Route exact path="/RelevantSkills" component={RelevantSkills} />
             {/* <Route exact path="/delete" component={DeleteImage}/> */}
             {/* remove this above line */}
             <Route exact path="/">
