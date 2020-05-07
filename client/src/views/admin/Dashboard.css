@@ -17,3 +17,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.EduCardsDivFlex{
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: wrap;
+}

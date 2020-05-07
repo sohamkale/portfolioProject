@@ -112,7 +112,7 @@ const Dashboard = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col mb={12} className="RowDivFlex">
+                    <Col mb={12} className="EduCardsDivFlex">
                         <EdCard
                         userUid={userUid}
                         refAbout={refAbout}
@@ -137,10 +137,10 @@ const Dashboard = (props) => {
                     </Col>
                 </Row>
                 <Row className="bg-dark">
-                    <Col mb={6}>
+                    <Col mb={6} className="EduCardsDivFlex">
                         <FooterCard/>
                     </Col>
-                    <Col mb={6}>
+                    <Col mb={6} className="EduCardsDivFlex">
                         <FooterLinks/>
                     </Col>
                 </Row>                

@@ -10,11 +10,21 @@
 }
 
 .ProjectsMainDiv{
+    /* CENTERING CARDS AND MAKING THEM RESPONSIVE USING CSS-GRID*/
     width: 100vw;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     grid-template-rows: 3fr;
     grid-gap: 10px;
+
+    /* CENTERING CARDS AND MAKING THEM RESPONSIVE USING CSS-FLEXBOX*/
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: wrap;
     
 }
 
