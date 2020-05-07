@@ -99,18 +99,20 @@ const Dashboard = (props) => {
     return (
         <div className="fullWidthDiv">
             <Container fluid className="bg-dark">
-                <Row className="bg-info">
-                    <Col mb={12}>
+                <Row className="bg-info ">
+                    <Col mb={12} className="RowDivFlex">
                         <DashCard/>
                     </Col>
                 </Row>
                 <Row className="text-center text-white">Update About Page</Row>
                 <Row className="text-center text-white"><Button onClick={addUniversity}>Add Previous University</Button></Row>
                 <Row className="bg-danger">
-                    <Col mb={6}>
+                    <Col mb={12} className="RowDivFlex">
                         <AboutCard/>
                     </Col>
-                    <Col mb={6}>
+                </Row>
+                <Row>
+                    <Col mb={12} className="RowDivFlex">
                         <EdCard
                         userUid={userUid}
                         refAbout={refAbout}

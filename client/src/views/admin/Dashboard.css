@@ -11,9 +11,9 @@
     align-items: center;
 }
 
-/* .fullWidthDivChildren1{
+.RowDivFlex{
+    width: auto;
     display: flex;
     justify-content: center;
-    text-align: center;
     align-items: center;
-} */
+}
