@@ -11,186 +11,88 @@ import fire from "../../config/Fire";
 import { useId } from "react-id-generator";
 import "./Dashboard.css";
 const Dashboard = (props) => {
-    // let id = useId();
-    // const [uniCount, setUniCount] = useState(1);
-    const [university, setUniversity] = useState(null);
-    const [college, setCollege] = useState(null);
-    const [degree, setDegree] = useState(null);
-    const [major, setMajor] = useState(null);
-    const [gpa, setGpa] = useState(null);
-    const [indexToDelete, setIndexToDelete] = useState("");
-    const [toggleAdd, setToggleAdd] = useState(true);
-    const [isDelete, setIsDelete] = useState(false);
     const [numOfCards, setNumOfCards] = useState(0);
     const [uniqueIdCount, setUniqueIdCount] = useState(0);
     const [userUid, setUserUid] = useState(null);
-    const [eduCardsArray, setEduCardsArray] = useState([]); //array to hold universityNames
-    const [actualEduCardsArray, setActualEduCardsArray] = useState([]);
+    const [uniCardsArray, setUniCardsArray] = useState([]); //array to hold universityNames
+
     var db = fire.database();
     var refEducation = db.ref(`${userUid}/About/Education`);
-    const [fieldsArray, setFieldsArray] = useState([{
-    }]);
-    const addUniversity = (e) => {
-        // alert("Inside add");
-        if(uniqueIdCount === 0 && numOfCards === 0) {
-            // alert("Inside if in add");
-            let newArray = [...eduCardsArray];
-            // setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
-            setToggleAdd(true);
-            let newObj = {
-                'id': (uniqueIdCount + 1).toString(),
-                'university': "",
-                'college': "",
-                'degree': "",
-                'major': "",
-                'gpa': "",
-            }
-            console.log("Before concat: " + newArray);
-            newArray = newArray.concat(newObj);
-    
-            console.log("After concat: " + newArray);
-            setEduCardsArray(newArray);
-        }else{
-            // alert("Inside ELSE");
-        let newArray = [...actualEduCardsArray];
-        setNumOfCards(numOfCards + 1);              ///PROBLEM: NEEDS TO BE FIXED WITH UNIQUEIDNUM
-        setToggleAdd(true);
-        let newObj = {
-            'id': (uniqueIdCount + 1).toString(),
-            'university': "",
-            'college': "",
-            'degree': "",
-            'major': "",
-            'gpa': "",
-        }
-        console.log("Before concat: " + newArray);
-        newArray = newArray.concat(newObj);
+    var refAbout = db.ref(`${userUid}/About`);
 
-        console.log("After concat: " + newArray);
-        setActualEduCardsArray(newArray);
-    }
-        // setUniqueIDs(uniqueIDs.concat(id));
-        // setUniCount(uniCount + 1);
-    }
-
-    const onClickDelete = (e) => {
-        // alert(e.target.id);
-        setIsDelete(true);
-        setIndexToDelete(e.target.id);
-        setNumOfCards(numOfCards - 1);
-        refEducation.child(e.target.id).remove();
-        let newDeletedArray = [...actualEduCardsArray];
-        console.log("Before Deleting: " + newDeletedArray);
-        // newArray = newArray.concat(newObj);
-        newDeletedArray.map((ele, index) => {
-            if(ele.id === e.target.id){
-                newDeletedArray.splice(index, 1);
-            }
-        })
-        console.log("After Deletion: " + newDeletedArray);
-        setActualEduCardsArray(newDeletedArray);
-        
-        // refEducation.update({'universityName': university,
-        // 'collegeName': college,
-        // 'degree': degree,
-        // 'major': major,
-        // 'gpa': gpa});
-    }
-
-    useEffect(() => {
-        if(isDelete){
-            console.log(numOfCards);
-            console.log(eduCardsArray);
-            console.log(actualEduCardsArray);
-        }
-    }, [isDelete])
-
-useEffect (() => {
+    useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUserUid(user.uid);
-            } else {
             }
           }); 
     }, []);
 
-    useLayoutEffect (() => {
-        // alert("in setEduCards");
+    useEffect (() => {
         refEducation.on("value", function(userSnapshot) {
-            let shouldSetToZero = true;
+            setUniCardsArray([]);
+            setNumOfCards(0);
+            setUniqueIdCount(0);
             userSnapshot.forEach(function(snapshot) {
-                let a, b, c, d, e;
-                shouldSetToZero = false;
-                snapshot.forEach(function(snap) {
-                    if(snap.key === "collegeName"){
-                        a = snap.val();
-                    }else if(snap.key === "degree"){
-                        b = snap.val();
-                    }else if(snap.key === "gpa"){
-                        c = snap.val()
-                    }else if(snap.key === "major"){
-                        d = snap.val()
-                    }else if(snap.key === "universityName"){
-                        e = snap.val();
-                    }
-                })
-                setEduCardsArray(eduCardsArray.concat({
+                // setSingleSkill({
+                //     'id': snapshot.key,
+                //     'skill': snapshot.child('skill').val(),
+                // })
+                let newObject = {
                     'id': snapshot.key,
-                    'university': e,
-                    'college': a,
-                    'degree': b,
-                    'major': d,
-                    'gpa': c,
-                })) //NEED TO MAKE SURE THIS IS UPDATED BEFORE APPENDING IT TO THE ACTUAL ARRAY
-                // alert("snapshot.key: " + snapshot.key);
-                setUniqueIdCount(parseInt(snapshot.key));
+                    'collegeName': snapshot.child('collegeName').val(),
+                    'universityName': snapshot.child('universityName').val(),
+                    'major': snapshot.child('major').val(),
+                    'gpa': snapshot.child('gpa').val(),
+                    'degree': snapshot.child('degree').val()
+                }
+                setNumOfCards(numOfCards+1);
+                setUniqueIdCount(parseInt(newObject.id));
+                setUniCardsArray(uniCardsArray => uniCardsArray.concat(newObject));
             });
-            if(shouldSetToZero){
-                setEduCardsArray([])
-                setUniqueIdCount(0);
-            }
         });
-    }, [userUid])
+    }, [userUid]);
 
-    const toggleDelete = (e) => {
-        // setIsDelete(!isDelete);
-        setIsDelete(false);
+    const addUniversity = (e) => {
+        let newAddArray = [...uniCardsArray]; //made a copy of the university array
+        let uniObj = {
+            'id': (uniqueIdCount + 1).toString(),
+            'collegeName': "college",
+            'universityName': "university",
+            'major': "major",
+            'gpa': "0.00",
+            'degree': "degree"
+        } //new obj created to be inserted into the existing array
+        newAddArray.push(uniObj);
+        setNumOfCards(numOfCards+1); //increase the number of cards
+        setUniqueIdCount(uniqueIdCount + 1); //increae the uniqueIdCount
+        setUniCardsArray(newAddArray); //Set the university array equal to the newly created array with added object
+        refAbout.child('Education').child(uniqueIdCount + 1).update(
+            {
+                'collegeName': "college",
+                'universityName': "university",
+                'major': "major",
+                'gpa': "0.00",
+                'degree': "degree"
+            } 
+        );
     }
-
-    const toggleAddFunc = (e) => {
-        // setIsDelete(!isDelete);
-        setToggleAdd(false);
+//----------------------------------------------------------------------------------------------------------------------------
+    const deleteUniversity = (e) => {
+        let newDeleteArray = [...uniCardsArray]; //made a copy of the university array
+        newDeleteArray.map((delUni, index) => {
+            if(delUni.id === e.target.id){
+                newDeleteArray.splice(index, 1);
+            }
+        })
+        setNumOfCards(numOfCards+1); //Decrease the number of cards
+        setUniCardsArray(newDeleteArray); //Set the university array equal to the newly created array without deleted object
+        refAbout.child('Education').child(e.target.id).remove(); //remove the child from the database
     }
+//----------------------------------------------------------------------------------------------------------------------------
+    
 
-    const increaseUniqueID = (e) => {
-        setUniqueIdCount(uniqueIdCount+1);
-    }
 
-    useLayoutEffect (() => {
-        if(eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id != numOfCards && toggleAdd && eduCardsArray.length != 0){
-            // alert("INSIDE eduCARDSEFFECT " + toggleAdd)
-             setUniqueIdCount(uniqueIdCount + 1);
-             setNumOfCards(numOfCards + 1);
-            //  alert(actualEduCardsArray);
-            //  console.log(eduCardsArray)
-             setActualEduCardsArray(actualEduCardsArray.concat(eduCardsArray))
-        }else if (eduCardsArray != null && eduCardsArray != "" && eduCardsArray[eduCardsArray.length - 1].id == numOfCards){
-            console.log(eduCardsArray);
-        }
-    }, [eduCardsArray])
-
-    useEffect(() => {
-        // if(actualEduCardsArray != null && actualEduCardsArray != undefined && actualEduCardsArray != ""){
-            // setUniqueIdCount(uniqueIdCount + 1);
-        //     alert(actualEduCardsArray);
-        // }
-        console.log(uniqueIdCount);
-         console.log(actualEduCardsArray);
-    }, [actualEduCardsArray])
-
-    useEffect(() => {
-        //  alert("uniqueID: " + uniqueIdCount);
-    }, [uniqueIdCount])
     return (
         <div className="fullWidthDiv">
             <Container fluid className="bg-dark">
@@ -207,23 +109,12 @@ useEffect (() => {
                     </Col>
                     <Col mb={6}>
                         <EdCard
-                        indexToDelete={indexToDelete}
-                        toggleAddFunc={toggleAddFunc}
-                        toggleAdd={toggleAdd}
-                        increaseUniqueID={increaseUniqueID}
-                        isDelete={isDelete}
-                        toggleDelete={toggleDelete}
-                        onClickDelete={onClickDelete}
-                        eduCardsArraynew={actualEduCardsArray}/>
+                        userUid={userUid}
+                        refAbout={refAbout}
+                        refEducation={refEducation}
+                        deleteUniversity={deleteUniversity}
+                        eduCardsArray={uniCardsArray}/>
                     </Col>
-                    {/* <Col mb={6}>
-                        <EduCard/>
-                    </Col> */}
-                    {/* <Col mb={6}>
-                        <EducationCards
-                        uniqueIDs={uniqueIDs}
-                        cardNum={uniCount}/>
-                    </Col> */}
                 </Row>
                 <Row className="bg-dark">
                     <Col mb={6}>
@@ -232,18 +123,7 @@ useEffect (() => {
                     <Col mb={6}>
                         <FooterLinks/>
                     </Col>
-                </Row>
-                {/* <Row className="bg-danger">
-                    <Col mb={12}>
-                        <AboutCard/>
-                    </Col>
-                </Row>
-                <Row className="bg-danger">
-                    <Col mb={12}>
-                        <AboutCard/>
-                    </Col>
-                </Row> */}
-                
+                </Row>                
             </Container>
         </div>
     );
