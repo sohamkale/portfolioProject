@@ -1,25 +1,3 @@
-// import React from 'react';
-// import { Route, Switch, Redirect  } from 'react-router-dom';
-// import Home from "./views/home1/home";
-// import NotFound from "./views/NotFound";
-// import NavBar from "./components/Header/NavBar";
-
-// const App = () => {
-//   return (
-//     <div>
-//       <NavBar />
-//       <Switch>
-//         <Route exact path="/Home" component={Home} />
-//         <Route exact path="/">
-//           <Redirect to="/Home" />
-//         </Route>
-//         <Route component={NotFound}/>
-//       </Switch>
-//     </div>
-//   );
-// }
-
-// export default App;
 import React from 'react';
 // import logo from './logo.svg';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -34,6 +12,7 @@ import LoginApp from "./views/Login/LoginApp";
 import Signup from "./views/Signup/Signup";
 import SoftSkills from "./components/DashCard/AboutCard/SoftSkills";
 import RelevantSkills from "./components/DashCard/AboutCard/RelevantSkills";
+import ProjectsMain from "./components/DashCard/ProjectsCards/ProjectsMain";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SoftSkillsCard from './components/DashCard/AboutCard/SoftSkillsCard';
 function App() {
@@ -59,6 +38,7 @@ function App() {
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/SoftSkills" component={SoftSkills} />
             <Route exact path="/RelevantSkills" component={RelevantSkills} />
+            <Route exact path="/AddProjects" component={ProjectsMain} />
             {/* <Route exact path="/delete" component={DeleteImage}/> */}
             {/* remove this above line */}
             <Route exact path="/">

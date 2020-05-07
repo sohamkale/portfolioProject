@@ -2,36 +2,38 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 // import "./DashCard.css";
 const uuidv4 = require("uuid/v4");
-const RelevantSkillsCard = (props) => {
-  const onSkillChange = (e) => {
+
+const ProjectsCards = (props) => {
+
+  const onNameChange = (e) => {
     props.skillsArray.map((skillObj) => {
       if(skillObj.id === e.target.id){
-        skillObj.relevantSkill = e.target.value;
+        skillObj.name = e.target.value;
       }
     })
   }
 
-  const onPercentChange = (e) => {
+  const onDescChange = (e) => {
     props.skillsArray.map((skillObj) => {
       if(skillObj.id === e.target.id){
-        skillObj.percent = e.target.value;
+        skillObj.desc = e.target.value;
       }
     })
   }
 
   const onSave = (e) => {
-    let skillToUpdate;
-    let percent;
+    let nameToUpdate;
+    let descToUpdate;
     props.skillsArray.map((skillObj) => {
       if(skillObj.id === e.target.id){
-          skillToUpdate = skillObj.relevantSkill;
-          percent = skillObj.percent;
+          nameToUpdate = skillObj.name;
+          descToUpdate = skillObj.desc;
       }
     })
-    props.refAbout.child('RelevantSkills').child(e.target.id).update(
+    props.refAbout.child('projects').child(e.target.id).update(
     {
-        'relevantSkill': skillToUpdate,
-        'percent': percent
+        'name': nameToUpdate,
+        'desc': descToUpdate
     });
   }
 
@@ -41,19 +43,14 @@ const RelevantSkillsCard = (props) => {
       <Card id={element.id} style={{ width: '18rem' }} key={uuidv4()}>
       <Card.Img variant="top" />
       <Card.Body>
-        <Card.Title>Soft Skills</Card.Title>
+        <Card.Title>Projects</Card.Title>
         <InputGroup className="mb-3">
         <InputGroup.Prepend>
-          <InputGroup.Text id="basic-addon1">Skill:</InputGroup.Text>
+          <InputGroup.Text id="basic-addon1">Name:</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control id={element.id} onChange={onSkillChange} type="text" placeholder={element.relevantSkill} />
+        <Form.Control id={element.id} onChange={onNameChange} type="text" placeholder={element.name} />
       </InputGroup>
-      <InputGroup>
-      <InputGroup.Prepend>
-        <InputGroup.Text id="basic-addon1">Competence level (%):</InputGroup.Text>
-        </InputGroup.Prepend>
-      <Form.Control id={element.id} onChange={onPercentChange} type="text" placeholder={element.percent} />
-      </InputGroup>
+      <Form.Control id={element.id} onChange={onDescChange} as="textarea" placeholder={element.desc} rows="3" />
     
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
       <Button id={element.id} onClick={props.deleteSkill} variant="primary">Delete</Button>
@@ -69,4 +66,4 @@ const RelevantSkillsCard = (props) => {
     
 }
 
-export default RelevantSkillsCard;
+export default ProjectsCards;
