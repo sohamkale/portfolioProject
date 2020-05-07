@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import fire from "./../../../config/Fire";
 import SoftSkillsCard from "./SoftSkillsCard.js";
-
+import "./SoftSkills.css"
 const SoftSkills = (props) => {
     const [skillsArray, setSkillsArray] = useState([]);
     const [uniqueId, setUniqueId] = useState(0);
@@ -78,26 +78,29 @@ const SoftSkills = (props) => {
         });
     }, [userUid]); //When userUid changes, this method is called which will search the database and fill the skills array
 //------------------------------------------------------------------------------------------------------------------------------
-    // useLayoutEffect (() => {
-    //    if(singleSkill != "" && singleSkill != null){
-    //        console.log(singleSkill.id);
-    //    let addSkillArr = [...skillsArray]; //Make a copy of skills array
-    //    addSkillArr.push(singleSkill); //push the skill obj into the copied array
-    //    setNumOfCards(numOfCards+1); //increase the number of cards
-    //    setUniqueId(parseInt(singleSkill.id)); //set uniqueId to whatever id is in the database
-    //    setSkillsArray(addSkillArr);
-    //    }
-    // }, [singleSkill]);
 
     return (
         <div>
-            <Button onClick={addSkill}>Add Skill</Button>
+            <Container fluid>
+                <Row>
+                    <Col md={12} className="text-center">
+                    <Button onClick={addSkill}>Add Skill</Button>
+                    </Col>
+                    <Col md={12} className="text-center">
+                    <br/>
+                    </Col>                
+                </Row>
+            </Container>
+            <Container fluid className="bg-danger">
+            <Container fluid className="bg-dark SoftSkillsDiv">
             <SoftSkillsCard
                 deleteSkill={deleteSkill}
                 useUid = {userUid}
                 refAbout = {refAbout}
                 skillsArray = {skillsArray}
             />
+            </Container>
+            </Container>
         </div>
     )
 }

@@ -86,9 +86,8 @@ const ProjectsMain = (props) => {
                     </Col>                
                 </Row>
             </Container>
-            {/* <div className="ProjectsMainDivWrapper "> */}
+
             <Container fluid className="bg-danger">
-            {/* <div className="ProjectsMainDiv justify-content-center"> */}
             <Container fluid className="bg-dark ProjectsMainDiv">
             <ProjectsCards
                 deleteSkill={deleteSkill}
@@ -96,10 +95,8 @@ const ProjectsMain = (props) => {
                 refAbout = {refAbout}
                 skillsArray = {skillsArray}
             />
-            {/* </div> */}
             </Container>
             </Container>
-            {/* </div> */}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import fire from "./../../../config/Fire";
 import RelevantSkillsCard from "./RelevantSkillsCard.js";
-
+import "./RelevantSkills.css";
 const RelevantSkills = (props) => {
     const [skillsArray, setSkillsArray] = useState([]);
     const [uniqueId, setUniqueId] = useState(0);
@@ -83,13 +83,26 @@ const RelevantSkills = (props) => {
 
     return (
         <div>
-            <Button onClick={addSkill}>Add Skill</Button>
+            <Container>
+                <Row>
+                    <Col md={12} className="text-center">
+                    <Button onClick={addSkill}>Add Relevant Programming Skill</Button>
+                    </Col>
+                    <Col md={12} className="text-center">
+                    <br/>
+                    </Col>                
+                </Row>
+            </Container>
+            <Container fluid className="bg-danger">
+            <Container fluid className="bg-dark RelevantSkillsDiv">
             <RelevantSkillsCard
                 deleteSkill={deleteSkill}
                 useUid = {userUid}
                 refAbout = {refAbout}
                 skillsArray = {skillsArray}
             />
+            </Container>
+            </Container>
         </div>
     )
 }

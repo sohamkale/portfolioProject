@@ -41,7 +41,7 @@ const RelevantSkillsCard = (props) => {
       <Card id={element.id} style={{ width: '18rem' }} key={uuidv4()}>
       <Card.Img variant="top" />
       <Card.Body>
-        <Card.Title>Soft Skills</Card.Title>
+        <Card.Title>Relevant Skills</Card.Title>
         <InputGroup className="mb-3">
         <InputGroup.Prepend>
           <InputGroup.Text id="basic-addon1">Skill:</InputGroup.Text>
