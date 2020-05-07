@@ -64,10 +64,6 @@ const RelevantSkills = (props) => {
             setNumOfCards(0);
             setUniqueId(0);
             userSnapshot.forEach(function(snapshot) {
-                // setSingleSkill({
-                //     'id': snapshot.key,
-                //     'skill': snapshot.child('skill').val(),
-                // })
                 let obj = {
                     'id': snapshot.key,
                     'relevantSkill': snapshot.child('relevantSkill').val(),

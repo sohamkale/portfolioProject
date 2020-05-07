@@ -12,6 +12,8 @@ import Footer from "./../../components/Footer/Footer.js";
 import { Icon } from 'semantic-ui-react';
 import fire from "../../config/Fire";
 import AboutUniversities from "./AboutUniversities";
+import AboutSoftSkills from "./AboutSoftSkills";
+import AboutRelevantSkills from "./AboutRelevantSkills";
 import { useMediaPredicate } from "react-media-hook";
 const About = (props) => {
     let react = 75, CSS = 65, HTML = 75, C = 80, Java = 80, JS = 75, Node = 60, Git = 75, Firebase = 70, AS = 40;
@@ -26,15 +28,14 @@ const About = (props) => {
     var refAbout = db.ref(`${userUid}/About`);
 
     var refEducation = db.ref(`${userUid}/About/Education`);
-    // var refEducation = db.ref(`${userUid}/About/Education/2`);
-    const [university, setUniversity] = useState(null);
-    const [college, setCollege] = useState(null);
-    const [degree, setDegree] = useState(null);
-    const [major, setMajor] = useState(null);
-    const [gpa, setGpa] = useState(null);
+    var refSoftSkills = db.ref(`${userUid}/About/softSkills`);
+    var refRelevantSkills = db.ref(`${userUid}/About/RelevantSkills`);
 
     const [eduCardsArray, setEduCardsArray] = useState([]);
     const [actualEduCardsArray, setActualEduCardsArray] = useState([]);
+
+    const [AboutSoftSkillsArray, setAboutSoftSkillsArray] = useState([]);
+    const [AboutRelevantSkillsArray, setAboutRelevantSkillsArray] = useState([]);
     useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -82,15 +83,33 @@ const About = (props) => {
                     'degree': b,
                     'major': d,
                     'gpa': c,
-                })) //NEED TO MAKE SURE THIS IS UPDATED BEFORE APPENDING IT TO THE ACTUAL ARRAY
-                // alert("snapshot.key: " + snapshot.key);
-                // setUniqueIdCount(parseInt(snapshot.key));
+                }))
             });
-            if(shouldSetToZero){
-                // setEduCardsArray([])
-                // setUniqueIdCount(0);
-            }
         });
+
+        refSoftSkills.on("value", function(userSnapshot) {
+            setAboutSoftSkillsArray([]);
+            userSnapshot.forEach(function(snapshot) {
+                let obj = {
+                    'id': snapshot.key,
+                    'skill': snapshot.child('skill').val(),
+                }
+                setAboutSoftSkillsArray(AboutSoftSkillsArray => AboutSoftSkillsArray.concat(obj));
+            });
+        });
+
+        refRelevantSkills.on("value", function(userSnapshot) {
+            setAboutRelevantSkillsArray([]);
+            userSnapshot.forEach(function(snapshot) {
+                let obj = {
+                    'id': snapshot.key,
+                    'relevantSkill': snapshot.child('relevantSkill').val(),
+                    'percent': snapshot.child('percent').val()
+                }
+                setAboutRelevantSkillsArray(AboutRelevantSkillsArray => AboutRelevantSkillsArray.concat(obj));
+            });
+        });
+
     }, [userUid])
 
 
@@ -118,22 +137,10 @@ const About = (props) => {
         <div className="mainContainer">
             <div className="imageContainer bg-dark">
                 <div className="square">
-                    {/* <div className="container-fluid" > */}
                     <img className="img-fluid" src={myImage}></img>
-                    {/* </div> */}
-                   
-                    {/* <div className="squareChild">Square</div> */}
                 </div>
             </div>
             <div className="descriptionContainer text-lg-center border-bottom">
-                {/* <div className="pStyle">
-                    <h3>About Me!</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                   It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                   It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                </div> */}
                 <Card style={{width: "100%"}} bg={'dark'} text={'white'}>
                 <br/>
                 <h4 className="headStyle">About Me</h4>
@@ -144,47 +151,23 @@ const About = (props) => {
             <div className="gpaContainer bg-dark eduFont border-bottom">
                 
                 <h4>Education</h4>
-               
-                {/* <ul><b><u>{university}</u></b>
-                    
-                    <li>{degree} Degree</li>
-                    
-                    <li>{major} - {college}</li>
-                    <li>{gpa}</li>
-                </ul>
-                <ul><b><u>Valencia Community College, Orlando, FL</u></b>
-                    <li>Associates in Arts Degree (August 2018)</li>
-                    <li>Computer Science</li>
-                    <li>GPA: 4.0</li>
-                </ul> */}
                 <AboutUniversities actualEduCardsArray={actualEduCardsArray}/>
             </div>
             <div className="softSkillsContainer bg-dark eduFont border-bottom">
                 
                 <h4>Soft Skills</h4>
                 <Icon name='university' size='large' />
-                <ul>
-                    <li>Focused and attentive</li>
-                    <li>Hardworking and energetic</li>
-                    <li>Friendly</li>
-                    <li>Team player</li>
-                    <li>Positive and helpful</li>
-                    <li>Detail and goal-oriented</li>
-                </ul>
+                <AboutSoftSkills Array={AboutSoftSkillsArray}/>
             </div>
             {/* vision, professional approach, hobbies */}
             <div className="skillsContainer bg-dark">
                 <h4 className="headStyle">Relevant skills</h4>
             
-            {/* <div class="row no-gutters">
-            <label className="col-sm-1 bg-dark text-white labelHeight">React</label>
-            <ProgressBar className="col-sm-11" variant="success" label={`${react}%`} now={40} />
-            </div> */}
-
             <Container fluid className="pStyle">
-            <Row>
+            {/* <Row>
                 <Col xs={labelCol} className="labelHeight">React</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={react} /></Col>
+                
             </Row>
             <div className="smallDivision"></div>
             <Row>
@@ -227,21 +210,7 @@ const About = (props) => {
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Unity}%`} now={Unity} /></Col>
             </Row>
             <div className="smallDivision"></div>
-            {/* <Row>
-                <Col xs={labelCol} className="labelHeight">Arm Assembly</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={40} /></Col>
-            </Row>
-            <div className="smallDivision"></div> */}
-            {/* <Row>
-                <Col xs={labelCol} className="labelHeight">Android Studio</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${AS}%`} now={AS} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">PHP</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${PHP}%`} now={PHP} /></Col>
-            </Row>
-            <div className="smallDivision"></div> */}
+            
             <Row>
                 <Col xs={labelCol} className="labelHeight">.Net</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Net}%`} now={Net} /></Col>
@@ -252,11 +221,7 @@ const About = (props) => {
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${MongoDB}%`} now={MongoDB} /></Col>
             </Row>
             <div className="smallDivision"></div>
-            {/* <Row>
-                <Col xs={labelCol} className="labelHeight">Restful API's</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={40} /></Col>
-            </Row>
-            <div className="smallDivision"></div> */}
+            
             <Row>
                 <Col xs={labelCol} className="labelHeight">Firebase</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Firebase}%`} now={Firebase} /></Col>
@@ -265,12 +230,11 @@ const About = (props) => {
             <Row>
                 <Col xs={labelCol} className="labelHeight">Git</Col>
                 <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Git}%`} now={Git} /></Col>
-            </Row>
-            {/* <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">Various IDE's</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={40} /></Col>
             </Row> */}
+            <AboutRelevantSkills 
+            labelCol={labelCol}
+            progressBarCol={progressBarCol}
+            Array={AboutRelevantSkillsArray}/>
             <Row>
             <div className="bigDivision"></div>
             </Row>
