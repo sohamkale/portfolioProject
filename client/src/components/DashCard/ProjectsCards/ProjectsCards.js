@@ -10,6 +10,12 @@ const ProjectsCards = (props) => {
 
     const onImageChange = (e) => {
         setImage(e.target.files[0]);
+        props.skillsArray.map((skillObj) => {
+            if(skillObj.id === e.target.id){
+              skillObj.imgName = e.target.files[0].name;
+              skillObj.imgBool = true;
+            }
+        })
     }
 
   const onNameChange = (e) => {
@@ -62,7 +68,8 @@ const ProjectsCards = (props) => {
               {
                 //   'name': nameToUpdate,
                 //   'desc': descToUpdate,
-                  'img': url
+                  'img': url,
+                  'imgName': image.name
               });
         })
     });
@@ -98,14 +105,15 @@ const ProjectsCards = (props) => {
             <input
             type="file"
             className="custom-file-input"
-            id="inputGroupFile01"
+            // id="inputGroupFile01"
+            id={element.id}
             onChange={onImageChange}
             aria-describedby="inputGroupFileAddon01"
             />
             <label className="custom-file-label" htmlFor="inputGroupFile01">
             {(function() {
-            if (image != null) {
-                return image.name;
+            if (element.imgBool != false) {
+                return element.imgName;
             } else {
                 return "Choose a file";
             }
@@ -114,7 +122,7 @@ const ProjectsCards = (props) => {
         </div>
         </div>
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
-      <Button id={element.id} onClick={props.deleteSkill} variant="primary">Delete</Button>
+      <Button id={element.id} name={element.id + element.imgName} onClick={props.deleteSkill} variant="primary">Delete</Button>
       <Button id={element.id} onClick={onSave} variant="primary">Save</Button>
       <Button id={element.id} onClick={imageUpdateFunct} variant="primary">upload</Button>
     </Card.Body>

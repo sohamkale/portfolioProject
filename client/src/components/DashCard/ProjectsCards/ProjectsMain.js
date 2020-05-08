@@ -2,6 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import fire from "./../../../config/Fire";
 import ProjectsCards from "./ProjectsCards.js";
+import {storage} from "./../../../config/Fire";
 import "./ProjectsMain.css";
 const ProjectsMain = (props) => {
     const [skillsArray, setSkillsArray] = useState([]);
@@ -12,6 +13,7 @@ const ProjectsMain = (props) => {
     var db = fire.database(); //reference to database
     var refAbout = db.ref(`${userUid}/ProjectsPage/`); //reference to about
     var refSoftSkills = db.ref(`${userUid}/ProjectsPage/projects`); //reference to the softSkills child of about
+    var delRef = storage.ref(`images/${userUid}/Projects/`);
 //------------------------------------------------------------------------------------------------------------------------------
     const addSkill = () => {
         let skillObj = {
@@ -19,7 +21,8 @@ const ProjectsMain = (props) => {
             'name': "ProjectName",
             'desc': "Description",
             'img': "null",
-            // 'imgName': ""
+            'imgName': "",
+            'imgBool': false
         }
         let copySkillsArray = [...skillsArray];
         copySkillsArray.push(skillObj); //Add the newly created obj at the end of the array
@@ -31,7 +34,7 @@ const ProjectsMain = (props) => {
                 'name': "ProjectName",
                 'desc': "Description",
                 'img': "null",
-                // 'imgName': ""
+                'imgName': ""
             }
         );
            
@@ -39,7 +42,12 @@ const ProjectsMain = (props) => {
 //------------------------------------------------------------------------------------------------------------------------------
     const deleteSkill = (e) => {
         console.log(e.target.id);
-        
+        alert(e.target.name);
+        let imgRef = delRef.child(e.target.name).delete().then(function() {
+            alert("File deleted successfully");
+          }).catch(function(error) {
+            // Uh-oh, an error occurred!
+          });
        //e is the button pressed so to get the id we need e.target.id
         let copyDeleteSkillsArray = [...skillsArray]; //copy the existing array
         refAbout.child('projects').child(e.target.id).remove(); //remove the correct id from the database
@@ -71,7 +79,8 @@ const ProjectsMain = (props) => {
                     'name': snapshot.child('name').val(),
                     'desc': snapshot.child('desc').val(),
                     'img': snapshot.child('img').val(),
-                    // 'imgName': snapshot.child('imgName').val()
+                    'imgName': snapshot.child('imgName').val(),
+                    'imgBool': false
                 }
                 setNumOfCards(numOfCards+1);
                 setUniqueId(parseInt(obj.id));
