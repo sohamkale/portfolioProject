@@ -48,14 +48,14 @@ const ProjectsCards = (props) => {
   const imageUpdateFunct = (a) => {
     let imp = a.target.id;
     console.log(a);
-    const uploadTask = storage.ref(`images/Projects/${image.name}`).put(image);
+    const uploadTask = storage.ref(`images/${props.userUid}/Projects/${imp+image.name}`).put(image);
     uploadTask.on("state_changed", snapshot => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
        
     }, error => {
         console.log(error);
     }, () => {
-        storage.ref(`images/Projects/`).child(`${image.name}`).getDownloadURL().then(url => {
+        storage.ref(`images/${props.userUid}/Projects/`).child(`${imp+image.name}`).getDownloadURL().then(url => {
             setUrl(url);
            
               props.refAbout.child('projects').child(imp).update(

@@ -97,7 +97,7 @@ const ProjectsMain = (props) => {
             <Container fluid className="bg-dark ProjectsMainDiv">
             <ProjectsCards
                 deleteSkill={deleteSkill}
-                useUid = {userUid}
+                userUid = {userUid}
                 refAbout = {refAbout}
                 skillsArray = {skillsArray}
             />
