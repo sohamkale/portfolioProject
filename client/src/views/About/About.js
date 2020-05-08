@@ -36,6 +36,7 @@ const About = (props) => {
 
     const [AboutSoftSkillsArray, setAboutSoftSkillsArray] = useState([]);
     const [AboutRelevantSkillsArray, setAboutRelevantSkillsArray] = useState([]);
+    const [AboutImage, setAboutImage] = useState(null);
     useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -50,6 +51,8 @@ const About = (props) => {
             userSnapshot.forEach(function(snapshot) {
                 if(snapshot.key === "description"){
                     setDescription(snapshot.val());
+                }else if(snapshot.key === "aboutImage"){
+                    setAboutImage(snapshot.val());
                 }
             });
         });
@@ -137,7 +140,7 @@ const About = (props) => {
         <div className="mainContainer">
             <div className="imageContainer bg-dark">
                 <div className="square">
-                    <img className="img-fluid" src={myImage}></img>
+                    <img className="img-fluid" src={AboutImage}></img>
                 </div>
             </div>
             <div className="descriptionContainer text-lg-center border-bottom">
@@ -164,73 +167,6 @@ const About = (props) => {
                 <h4 className="headStyle">Relevant skills</h4>
             
             <Container fluid className="pStyle">
-            {/* <Row>
-                <Col xs={labelCol} className="labelHeight">React</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${react}%`} now={react} /></Col>
-                
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">CSS</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${CSS}%`} now={CSS} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">HTML</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${HTML}%`} now={HTML} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">JavaScript</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${JS}%`} now={JS} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">Node.js</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Node}%`} now={Node} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">Java</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Java}%`} now={Java} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">C++/C</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${C}%`} now={C} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">C#</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${CSharp}%`} now={CSharp} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">Unity</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Unity}%`} now={Unity} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            
-            <Row>
-                <Col xs={labelCol} className="labelHeight">.Net</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Net}%`} now={Net} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">MongoDB</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${MongoDB}%`} now={MongoDB} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            
-            <Row>
-                <Col xs={labelCol} className="labelHeight">Firebase</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Firebase}%`} now={Firebase} /></Col>
-            </Row>
-            <div className="smallDivision"></div>
-            <Row>
-                <Col xs={labelCol} className="labelHeight">Git</Col>
-                <Col xs={progressBarCol}><ProgressBar variant="success" label={`${Git}%`} now={Git} /></Col>
-            </Row> */}
             <AboutRelevantSkills 
             labelCol={labelCol}
             progressBarCol={progressBarCol}

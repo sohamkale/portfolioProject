@@ -9,6 +9,7 @@ import SoftSkillsCard from "../../components/DashCard/AboutCard/SoftSkillsCard";
 import ProjectsMain from "../../components/DashCard/ProjectsCards/ProjectsMain";
 import SoftSkillsRow from "../../components/DashCard/AboutCard/SoftSkills";
 import RelevantSkillsRow from "../../components/DashCard/AboutCard/RelevantSkills";
+import AboutImage from "../../components/DashCard/AboutCard/AboutImage";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire from "../../config/Fire";
 import { useId } from "react-id-generator";
@@ -107,8 +108,11 @@ const Dashboard = (props) => {
                 <Row className="text-center text-white">Update About Page</Row>
                 <Row className="text-center text-white"><Button onClick={addUniversity}>Add Previous University</Button></Row>
                 <Row className="bg-danger">
-                    <Col mb={12} className="RowDivFlex">
+                    <Col mb={6} className="RowDivFlex">
                         <AboutCard/>
+                    </Col>
+                    <Col mb={6} className="RowDivFlex">
+                        <AboutImage/>
                     </Col>
                 </Row>
                 <Row>
