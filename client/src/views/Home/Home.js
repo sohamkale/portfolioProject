@@ -38,10 +38,6 @@ const Home = () => {
         console.log(ref);
         ref.on("value", function(userSnapshot) {
             userSnapshot.forEach(function(snapshot) {
-                // if(snapshot.key === "initials"){
-                //     // alert(snapshot.val());
-                //     setInitials(snapshot.val());
-                // }
                 if(snapshot.key === "typeWriterName"){
                     // alert(snapshot.val());
                     setTypeWriterName(snapshot.val());
@@ -51,7 +47,6 @@ const Home = () => {
                     // alert(snapshot.value);
                     setHomeImage(snapshot.val());
                 }
-                
                 console.log(snapshot);
             });
         });
@@ -84,7 +79,7 @@ const Home = () => {
         <main class="wrapper">
             
             <div className="imageDiv">
-                <Image/>
+                <Image imageSrc={homeImage}/>
                 {/* {isMobile ?  null : <Image/>}    */}
                 {/* <h2 className="imageText">Hi...I am Soham Kale!!</h2> */}
                 <h1 className="imageText">

@@ -85,12 +85,11 @@ const RelevantSkills = (props) => {
                     <Button onClick={addSkill}>Add Relevant Programming Skill</Button>
                     </Col>
                     <Col md={12} className="text-center">
-                    <br/>
                     </Col>                
                 </Row>
             </Container>
             <Container fluid className="bg-danger">
-            <Container fluid className="bg-dark RelevantSkillsDiv">
+            <Container fluid className="bg-danger RelevantSkillsDiv">
             <RelevantSkillsCard
                 deleteSkill={deleteSkill}
                 useUid = {userUid}

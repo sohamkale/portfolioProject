@@ -9,15 +9,11 @@ import image2 from './backImage2.jpg';
 import "./image.css";
 import image3 from './potraitImage.jpg';
 import { useMediaPredicate } from "react-media-hook";
-const Image = () => {
+const Image = (props) => {
     const isMobile = useMediaPredicate("(max-width: 768px)");
-    // useEffect({
-    //     let a = useMediaPredicate("(max-width: 680px)");
-    //     setIsMobile(a);
-    // }, []);
     return(
         <div>
-            {isMobile ? <img className ="image" src = {image3}/> : <img className ="image"src = {image5}/>}   
+            {isMobile ? <img className ="image" src = {image3}/> : <img className ="image"src = {props.imageSrc}/>}   
             {/* <img className ="image"src = {image2}/> */}
         </div>
         

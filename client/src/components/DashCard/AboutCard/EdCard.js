@@ -1,6 +1,6 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
-// import "./DashCard.css";
+import "./SoftSkills.css";
 
 import fire from "./../../../config/Fire";
 const uuidv4 = require("uuid/v4");
@@ -81,8 +81,7 @@ const EdCard = (props) => {
         console.log(element.university);
        Array.push(
         
-        <Card id={element.id} key={uuidv4()} style={{ width: '18rem' }}>
-            <script>console.log(element.university)</script>
+        <Card id={element.id} key={uuidv4()} style={{ width: '18rem' }} className="columnMarginsCards">
         <Card.Img variant="top" />
         <Card.Body>
             <Card.Title>Education Background</Card.Title>

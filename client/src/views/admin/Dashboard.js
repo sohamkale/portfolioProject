@@ -10,6 +10,8 @@ import ProjectsMain from "../../components/DashCard/ProjectsCards/ProjectsMain";
 import SoftSkillsRow from "../../components/DashCard/AboutCard/SoftSkills";
 import RelevantSkillsRow from "../../components/DashCard/AboutCard/RelevantSkills";
 import AboutImage from "../../components/DashCard/AboutCard/AboutImage";
+import HomeImageCard from "../../components/DashCard/Card/homeCard";
+import ResumeCard from "../../components/DashCard/ResumeCard/ResumeCard";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire from "../../config/Fire";
 import { useId } from "react-id-generator";
@@ -38,10 +40,6 @@ const Dashboard = (props) => {
             setNumOfCards(0);
             setUniqueIdCount(0);
             userSnapshot.forEach(function(snapshot) {
-                // setSingleSkill({
-                //     'id': snapshot.key,
-                //     'skill': snapshot.child('skill').val(),
-                // })
                 let newObject = {
                     'id': snapshot.key,
                     'collegeName': snapshot.child('collegeName').val(),
@@ -95,28 +93,39 @@ const Dashboard = (props) => {
     }
 //----------------------------------------------------------------------------------------------------------------------------
     
-
-
     return (
         <div className="fullWidthDiv">
             <Container fluid className="bg-dark">
-                <Row className="bg-info ">
-                    <Col mb={12} className="RowDivFlex">
+                <Row className="bg-info">
+                    <Col className="bg-dark text-white RowDivFlex">
+                    <h2>Home Page</h2>
+                    </Col>
+                </Row>
+                <Row className="bg-info">
+                    <Col mb={6} className="RowDivFlex columnMargins">
                         <DashCard/>
                     </Col>
+                    <Col mb={6} className="RowDivFlex columnMargins">
+                        <HomeImageCard/>
+                    </Col>
                 </Row>
-                <Row className="text-center text-white">Update About Page</Row>
-                <Row className="text-center text-white"><Button onClick={addUniversity}>Add Previous University</Button></Row>
+                
+                <Row className="text-center RowDivFlex text-white"><h2>About Page</h2></Row>
                 <Row className="bg-danger">
-                    <Col mb={6} className="RowDivFlex">
+                    <Col mb={6} className="RowDivFlex columnMargins">
                         <AboutCard/>
                     </Col>
-                    <Col mb={6} className="RowDivFlex">
+                    <Col mb={6} className="RowDivFlex columnMargins">
                         <AboutImage/>
+                    </Col>                    
+                </Row>
+                <Row className="text-white bg-danger">
+                    <Col mb={12} className="text-center columnMargins">
+                        <Button onClick={addUniversity}>Add Previous University</Button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col mb={12} className="EduCardsDivFlex">
+                <Row className="bg-danger">
+                    <Col mb={12} className="EduCardsDivFlex columnMargins">
                         <EdCard
                         userUid={userUid}
                         refAbout={refAbout}
@@ -135,16 +144,24 @@ const Dashboard = (props) => {
                         <RelevantSkillsRow/>
                     </Col>
                 </Row>
+                <Row className="text-center RowDivFlex text-white"><h2>Projects Page</h2></Row>
                 <Row className="bg-info">
                     <Col sm={12}>
                         <ProjectsMain/>
                     </Col>
                 </Row>
+                <Row className="text-center RowDivFlex text-white"><h2>Resume Information</h2></Row>
+                <Row className="bg-primary">
+                    <Col mb={12} className="EduCardsDivFlex columnMargins">
+                        <ResumeCard/>
+                    </Col>
+                </Row> 
+                <Row className="text-center RowDivFlex text-white"><h2>Footer Information</h2></Row>
                 <Row className="bg-dark">
-                    <Col mb={6} className="EduCardsDivFlex">
+                    <Col mb={6} className="EduCardsDivFlex columnMargins">
                         <FooterCard/>
                     </Col>
-                    <Col mb={6} className="EduCardsDivFlex">
+                    <Col mb={6} className="EduCardsDivFlex columnMargins">
                         <FooterLinks/>
                     </Col>
                 </Row>                

@@ -1,14 +1,13 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
-import {storage} from "./../../../config/Fire";
-import fire from "./../../../config/Fire";
+import fire, {storage} from "./../../../config/Fire";
 
-const AboutCard = (props) => {
+const ResumeCard = (props) => {
     const [image, setImage] = useState(null);
     const [userUid, setUserUid] = useState(null);
     const [url, setUrl] = useState(null);
     var db = fire.database();
-    var refAbout = db.ref(`${userUid}/About`);
+    var refResume = db.ref(`${userUid}/ProjectsPage`);
    
 
     useEffect (() => {
@@ -21,9 +20,9 @@ const AboutCard = (props) => {
     }, [])
 
     useEffect (() => {
-        refAbout.on("value", function(userSnapshot) {
+        refResume.on("value", function(userSnapshot) {
             userSnapshot.forEach(function(snapshot) {
-                if(snapshot.key === "aboutImage"){
+                if(snapshot.key === "resume"){
                     setUrl(snapshot.val());
                 }
             });
@@ -35,17 +34,15 @@ const AboutCard = (props) => {
     }
 
     const onClickUpload = (e) => {
-        const uploadTask = storage.ref(`images/${userUid}/About/AboutImage`).put(image);
+        const uploadTask = storage.ref(`images/${userUid}/Resume/Resume`).put(image);
         uploadTask.on("state_changed", snapshot => {
-            // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            // setProgressBar(progress);
         }, error => {
             console.log(error);
         }, () => {
-            storage.ref(`images/${userUid}/About/`).child(`AboutImage`).getDownloadURL().then(url => {
+            storage.ref(`images/${userUid}/Resume/`).child(`Resume`).getDownloadURL().then(url => {
                 setUrl(url);
                 // writing to database prob: Duplicate entries!
-                refAbout.child("aboutImage").set(url)
+                refResume.child("resume").set(url);
             })
         });
     }
@@ -56,7 +53,7 @@ const AboutCard = (props) => {
         <Card.Img style={{ width: '10rem', height: '10rem' }} variant="top" src={url}/>
         </div>
     <Card.Body>
-    <Card.Title>About page Image</Card.Title>  
+    <Card.Title>Upload Resume</Card.Title>  
     <div className="input-group">
         <div className="custom-file">
             <input
@@ -84,4 +81,4 @@ const AboutCard = (props) => {
     
 }
 
-export default AboutCard;
+export default ResumeCard;

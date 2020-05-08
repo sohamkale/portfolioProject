@@ -38,7 +38,7 @@ const RelevantSkillsCard = (props) => {
   let softSkillsArray = [];
   props.skillsArray.map((element, index) => {  //array is an object {id: num, skill: string}
     softSkillsArray.push(
-      <Card id={element.id} style={{ width: '18rem' }} key={uuidv4()}>
+      <Card id={element.id} style={{ width: '18rem' }} key={uuidv4()} className="columnMarginsRelevantSkillsCards">
       <Card.Img variant="top" />
       <Card.Body>
         <Card.Title>Relevant Skills</Card.Title>

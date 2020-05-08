@@ -36,7 +36,9 @@ const Projects = (props) => {
                 let obj = {
                     'id': snapshot.key,
                     'name': snapshot.child('name').val(),
-                    'desc': snapshot.child('desc').val()
+                    'desc': snapshot.child('desc').val(),
+                    'img': snapshot.child('img').val(),
+                    'imgName': snapshot.child('imgName').val()
                 }
                 setProjectsArray(projectsArray => projectsArray.concat(obj));
             });

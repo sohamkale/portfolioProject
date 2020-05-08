@@ -83,12 +83,11 @@ const SoftSkills = (props) => {
                     <Button onClick={addSkill}>Add Skill</Button>
                     </Col>
                     <Col md={12} className="text-center">
-                    <br/>
                     </Col>                
                 </Row>
             </Container>
             <Container fluid className="bg-danger">
-            <Container fluid className="bg-dark SoftSkillsDiv">
+            <Container fluid className=" bg-danger SoftSkillsDiv">
             <SoftSkillsCard
                 deleteSkill={deleteSkill}
                 useUid = {userUid}

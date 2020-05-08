@@ -8,7 +8,7 @@ const ProjectsRow = (props) => {
         Rows.push(
         <Row fluid className="bg-danger">
             <PCard
-            image={image2}
+            image={project.img}
             title={project.name}
             desc={project.desc}/>
         </Row>

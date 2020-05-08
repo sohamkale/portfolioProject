@@ -79,7 +79,7 @@ const ProjectsCards = (props) => {
   let softSkillsArray = [];
   props.skillsArray.map((element, index) => {  //array is an object {id: num, skill: string}
     softSkillsArray.push(
-      <Card id={element.id} className="ProjectsCardsDiv bg-info" style={{ width: '18rem' }} key={uuidv4()}>
+      <Card id={element.id} className="ProjectsCardsDiv columnMarginsProjectsCards" style={{ width: '18rem' }} key={uuidv4()}>
         <div className="text-center">
             <Card.Img style={{ width: '10rem', height: '12rem'  }} variant="top" src={element.img} />
         </div>
@@ -97,11 +97,6 @@ const ProjectsCards = (props) => {
         Please upload an image or gif of your project.
     </Form.Text>
       <div className="input-group">
-        {/* <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroupFileAddon01">
-            Upload
-            </span>
-        </div> */}
         <div className="custom-file">
             <input
             type="file"

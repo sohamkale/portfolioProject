@@ -97,13 +97,12 @@ const ProjectsMain = (props) => {
                     <Button onClick={addSkill}>Add a new project</Button>
                     </Col>
                     <Col md={12} className="text-center">
-                    <br/>
                     </Col>                
                 </Row>
             </Container>
 
-            <Container fluid className="bg-danger">
-            <Container fluid className="bg-dark ProjectsMainDiv">
+            <Container fluid>
+            <Container fluid className="ProjectsMainDiv">
             <ProjectsCards
                 deleteSkill={deleteSkill}
                 userUid = {userUid}
