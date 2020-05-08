@@ -37,42 +37,43 @@ const ProjectsCards = (props) => {
   const onSave = (e) => {
     let nameToUpdate;
     let descToUpdate;
-        props.skillsArray.map((skillObj) => {
-            if(skillObj.id === e.target.id){
-                nameToUpdate = skillObj.name;
-                descToUpdate = skillObj.desc;
-            }
-          })
-          props.refAbout.child('projects').child(e.target.id.toString()).update(
-          {
-              'name': nameToUpdate,
-              'desc': descToUpdate,
-            //   'img': ""
-          });
-  }
-
-  const imageUpdateFunct = (a) => {
-    let imp = a.target.id;
-    console.log(a);
-    const uploadTask = storage.ref(`images/${props.userUid}/Projects/${imp+image.name}`).put(image);
-    uploadTask.on("state_changed", snapshot => {
-        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-       
-    }, error => {
-        console.log(error);
-    }, () => {
-        storage.ref(`images/${props.userUid}/Projects/`).child(`${imp+image.name}`).getDownloadURL().then(url => {
-            setUrl(url);
-           
-              props.refAbout.child('projects').child(imp).update(
-              {
-                //   'name': nameToUpdate,
-                //   'desc': descToUpdate,
-                  'img': url,
-                  'imgName': image.name
-              });
+    let imp = e.target.id;
+    let shouldUpload = false;
+    props.skillsArray.map((skillObj) => {
+        if(skillObj.imgBool != false){
+            shouldUpload = true;
+        }
+    })
+    //upload image to firestorage and save imageURL and imageName to database
+    if(shouldUpload){
+        const uploadTask = storage.ref(`images/${props.userUid}/Projects/${imp+image.name}`).put(image);
+        uploadTask.on("state_changed", snapshot => {
+            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        }, error => {
+            console.log(error);
+        }, () => {
+            storage.ref(`images/${props.userUid}/Projects/`).child(`${imp+image.name}`).getDownloadURL().then(url => {
+                setUrl(url);
+                  props.refAbout.child('projects').child(imp).update(
+                  {
+                      'img': url,
+                      'imgName': image.name
+                  });
+            })
+        });
+    }    
+    //upload image to firestorage and save imageURL and imageName to database
+    props.skillsArray.map((skillObj) => {
+        if(skillObj.id === e.target.id){
+            nameToUpdate = skillObj.name;
+            descToUpdate = skillObj.desc;
+        }
         })
-    });
+        props.refAbout.child('projects').child(e.target.id.toString()).update(
+        {
+            'name': nameToUpdate,
+            'desc': descToUpdate,
+        });
   }
 
   let softSkillsArray = [];
@@ -124,7 +125,6 @@ const ProjectsCards = (props) => {
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
       <Button id={element.id} name={element.id + element.imgName} onClick={props.deleteSkill} variant="primary">Delete</Button>
       <Button id={element.id} onClick={onSave} variant="primary">Save</Button>
-      <Button id={element.id} onClick={imageUpdateFunct} variant="primary">upload</Button>
     </Card.Body>
     </Card>
     )
