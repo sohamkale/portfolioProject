@@ -25,14 +25,14 @@ const AboutCard = (props) => {
     }
 
     const onClickUpload = (e) => {
-        const uploadTask = storage.ref(`images/About/AboutImage`).put(image);
+        const uploadTask = storage.ref(`images/${userUid}/About/AboutImage`).put(image);
         uploadTask.on("state_changed", snapshot => {
             // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
             // setProgressBar(progress);
         }, error => {
             console.log(error);
         }, () => {
-            storage.ref(`images/About/`).child(`AboutImage`).getDownloadURL().then(url => {
+            storage.ref(`images/${userUid}/About/`).child(`AboutImage`).getDownloadURL().then(url => {
                 setUrl(url);
                 // writing to database prob: Duplicate entries!
                 refAbout.child("aboutImage").set(url)
