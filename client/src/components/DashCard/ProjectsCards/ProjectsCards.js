@@ -46,13 +46,13 @@ const ProjectsCards = (props) => {
     })
     //upload image to firestorage and save imageURL and imageName to database
     if(shouldUpload){
-        const uploadTask = storage.ref(`images/${props.userUid}/Projects/${imp+image.name}`).put(image);
+        const uploadTask = storage.ref(`images/${props.userUid}/Projects/${imp+"image"}`).put(image);
         uploadTask.on("state_changed", snapshot => {
             const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
         }, error => {
             console.log(error);
         }, () => {
-            storage.ref(`images/${props.userUid}/Projects/`).child(`${imp+image.name}`).getDownloadURL().then(url => {
+            storage.ref(`images/${props.userUid}/Projects/`).child(`${imp+"image"}`).getDownloadURL().then(url => {
                 setUrl(url);
                   props.refAbout.child('projects').child(imp).update(
                   {
@@ -123,7 +123,7 @@ const ProjectsCards = (props) => {
         </div>
         </div>
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
-      <Button id={element.id} name={element.id + element.imgName} onClick={props.deleteSkill} variant="primary">Delete</Button>
+      <Button id={element.id} name={element.id + "image"} onClick={props.deleteSkill} variant="primary">Delete</Button>
       <Button id={element.id} onClick={onSave} variant="primary">Save</Button>
     </Card.Body>
     </Card>
