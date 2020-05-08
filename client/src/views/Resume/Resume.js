@@ -5,29 +5,38 @@ import { useMediaPredicate } from "react-media-hook";
 import {Button, Container, Row, Col, ResponsiveEmbed} from 'react-bootstrap';
 import Footer from "./../../components/Footer/Footer.js";
 import ResumePic from "./Resume.png";
+import fire from "../../config/Fire";
 const Resume = () => {
     const [cardWidth, setCardWidth] = useState('50vw');
+    const [image, setImage] = useState();
     const isMobile = useMediaPredicate("(max-width: 680px)");
-    // useEffect({
-    //     let a = useMediaPredicate("(max-width: 680px)");
-    //     setIsMobile(a);
-    // }, [])
+    const [userUid, setUserUid] = useState(null);
+    var db = fire.database(); //reference to database
+    var refProjectsPage = db.ref(`${userUid}/ProjectsPage/`); //reference to about
+
+    useEffect (() => {
+        fire.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                setUserUid(user.uid);
+            }
+          }); 
+    }, []);
+
+    useEffect (() => {
+        refProjectsPage.on("value", function(userSnapshot) {
+            userSnapshot.forEach(function(snapshot) {
+    
+                if(snapshot.key === "resume"){
+                    setImage(snapshot.val());
+                }
+            });
+        });
+    }, [userUid]);
     return(
-        // <div className="backImage">
-        //     <div className="center">
-        //         {isMobile ? <ResumeCard cardWidth={'100vw'}/> : <ResumeCard cardWidth={'50vw'}/>}
-        //         <embed src="https://firebasestorage.googleapis.com/v0/b/portfolio-a2412.appspot.com/o/Resume.pdf?alt=media&token=2e9a19d2-a3be-4f5c-8074-15426a7853ff" type="application/pdf" width="50%" view="fit"/>
-        //         <img class="img-fluid" src={ResumePic}></img>
-        //     </div>
-        //     <div className="buttonAlign">
-        //         <Button>Download</Button>
-        //     </div>
-        // </div>
-        // <div className=" bg-dark customDiv">
         <div>
             <Container fluid className="bg-dark centeredDivParent">
                 <div className="squareShape">
-                    <img src={ResumePic} class="img-fluid" alt="Responsive image"/>  
+                    <img src={image} class="img-fluid" alt="Responsive image"/>  
                 </div>
             </Container>
             <Container fluid className="bg-white text-center">

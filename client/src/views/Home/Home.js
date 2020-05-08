@@ -14,6 +14,7 @@ const Home = () => {
     const[a, seta] = useState(null);
     const isMobile = useMediaPredicate("(max-width: 768px)");
     const [userUid, setUserUid] = useState(null);
+    
     const [typeWriterName, setTypeWriterName] = useState("");
     // const [initials, setInitials] = useState("");
     const [homeImage, setHomeImage] = useState("");
@@ -27,9 +28,12 @@ const Home = () => {
             if (user) {
                 setUserUid(user.uid);
             } else {
+                alert("Please Sign in or Sign up to continue!");
+                window.location.href = "/Login";
             }
           }); 
     }, [])
+
 
     useLayoutEffect (() => {
         // alert(userUid);
@@ -65,15 +69,14 @@ const Home = () => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
                 alert("user");
-                return<div><Button onClick="logout">Logout</Button></div> ;
             } else {
             }
           }); 
     }
 
-    const logout = () => {
-        fire.auth().signOut();
-    }
+    // const logout = () => {
+    //     fire.auth().signOut();
+    // }
 
     return (
         <main class="wrapper">
@@ -110,7 +113,7 @@ const Home = () => {
                 </h1>
                 <div className="buttonDiv">
                 <Button onClick={onClick}>View my work</Button>
-                <div> <Button onClick={logout}>Logout</Button></div>
+                {/* <div> <Button onClick={logout}>Logout</Button></div> */}
                 </div>
             </div>
             

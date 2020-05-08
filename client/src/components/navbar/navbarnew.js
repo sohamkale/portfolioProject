@@ -4,15 +4,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import fire from "./../../config/Fire";
-
+import {Button} from "react-bootstrap";
 import * as ReactBootStrap from "react-bootstrap";
 const Navbarcomp = () => {
     const [initials, setInitials] = useState("");
     const [userUid, setUserUid] = useState(null);
+    const [isUser, setIsUser] = useState(false);
     useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUserUid(user.uid);
+                setIsUser(true);
             } else {
             }
           }); 
@@ -25,13 +27,17 @@ const Navbarcomp = () => {
         ref.on("value", function(userSnapshot) {
             userSnapshot.forEach(function(snapshot) {
                 if(snapshot.key === "initials"){
-                    // alert(snapshot.val());
+                   
                     setInitials(snapshot.val());
                 }
             });
         });
     }
     }, [userUid])
+
+    const logout = () => {
+        fire.auth().signOut();
+    }
     return (
 <ReactBootStrap.Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
 <ReactBootStrap.Navbar.Brand href="/home">{initials}</ReactBootStrap.Navbar.Brand>
@@ -44,7 +50,8 @@ const Navbarcomp = () => {
             <Nav.Link href="/resume">Resume</Nav.Link>
             <Nav.Link href="/Login">Login</Nav.Link>
             <Nav.Link href="/Signup">Signup</Nav.Link>
-             {/* <Nav.Link href="/contact">Contact Me</Nav.Link> */}
+            {isUser ? <Button onClick={logout} >Logout</Button> : null}
+            
 </ReactBootStrap.Nav>
 </ReactBootStrap.Navbar.Collapse>
 </ReactBootStrap.Navbar>
