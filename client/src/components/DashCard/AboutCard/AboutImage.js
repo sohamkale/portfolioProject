@@ -20,22 +20,11 @@ const AboutCard = (props) => {
           }); 
     }, [])
 
-    // useLayoutEffect (() => {
-    //     refAbout.on("value", function(userSnapshot) {
-    //         userSnapshot.forEach(function(snapshot) {
-    //             if(snapshot.key === "description"){
-    //                 setDescription(snapshot.val());
-    //             }
-    //         });
-    //     });
-    // }, [userUid])
-
     const onImageChange = (e) => {
         setImage(e.target.files[0]);
     }
 
     const onClickUpload = (e) => {
-        // var fireRef = fire.database().ref("images");
         const uploadTask = storage.ref(`images/About/AboutImage`).put(image);
         uploadTask.on("state_changed", snapshot => {
             // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);

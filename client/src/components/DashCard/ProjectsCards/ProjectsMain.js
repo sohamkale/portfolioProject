@@ -17,7 +17,9 @@ const ProjectsMain = (props) => {
         let skillObj = {
             'id': (uniqueId + 1).toString(),
             'name': "ProjectName",
-            'desc': "Description"
+            'desc': "Description",
+            'img': "null",
+            // 'imgName': ""
         }
         let copySkillsArray = [...skillsArray];
         copySkillsArray.push(skillObj); //Add the newly created obj at the end of the array
@@ -27,7 +29,9 @@ const ProjectsMain = (props) => {
         refAbout.child('projects').child(uniqueId + 1).update(
             {
                 'name': "ProjectName",
-                'desc': "Description"
+                'desc': "Description",
+                'img': "null",
+                // 'imgName': ""
             }
         );
            
@@ -65,7 +69,9 @@ const ProjectsMain = (props) => {
                 let obj = {
                     'id': snapshot.key,
                     'name': snapshot.child('name').val(),
-                    'desc': snapshot.child('desc').val()
+                    'desc': snapshot.child('desc').val(),
+                    'img': snapshot.child('img').val(),
+                    // 'imgName': snapshot.child('imgName').val()
                 }
                 setNumOfCards(numOfCards+1);
                 setUniqueId(parseInt(obj.id));
