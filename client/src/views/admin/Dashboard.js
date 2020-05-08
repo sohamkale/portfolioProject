@@ -1,5 +1,5 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react';
-import {Container, Row, Col, Button} from 'react-bootstrap';
+import {Container, Row, Col, Button, Image} from 'react-bootstrap';
 import DashCard from "../../components/DashCard/DashCard";
 import AboutCard from "../../components/DashCard/AboutCard/AboutCard";
 import FooterCard from "../../components/DashCard/FooterCard/FooterCard";
@@ -12,6 +12,7 @@ import RelevantSkillsRow from "../../components/DashCard/AboutCard/RelevantSkill
 import AboutImage from "../../components/DashCard/AboutCard/AboutImage";
 import HomeImageCard from "../../components/DashCard/Card/homeCard";
 import ResumeCard from "../../components/DashCard/ResumeCard/ResumeCard";
+import ProfilePic from "../../components/image/profilePic.png";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire from "../../config/Fire";
 import { useId } from "react-id-generator";
