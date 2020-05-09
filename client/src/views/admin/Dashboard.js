@@ -120,12 +120,12 @@ const Dashboard = (props) => {
                         <AboutImage/>
                     </Col>                    
                 </Row>
-                <Row className="text-white bg-danger">
-                    <Col mb={12} className="text-center columnMargins">
+                
+                <Row className="bg-danger RowBorder border-top border-left border-right border-dark">
+                
+                    <Col xl={12} className="text-center columnMargins">
                         <Button onClick={addUniversity}>Add Previous University</Button>
                     </Col>
-                </Row>
-                <Row className="bg-danger">
                     <Col mb={12} className="EduCardsDivFlex columnMargins">
                         <EdCard
                         userUid={userUid}
@@ -135,18 +135,18 @@ const Dashboard = (props) => {
                         eduCardsArray={uniCardsArray}/>
                     </Col>
                 </Row>
-                <Row className="bg-danger"> 
+                <Row className="bg-danger RowBorder border-top border-left border-right border-dark"> 
                     <Col sm={12}>
                         <SoftSkillsRow/>
                     </Col>
                 </Row>
-                <Row className="bg-danger"> 
+                <Row className="bg-danger RowBorder border-top border-left border-right border-dark"> 
                     <Col sm={12}>
                         <RelevantSkillsRow/>
                     </Col>
                 </Row>
                 <Row className="text-center RowDivFlex text-white"><h2>Projects Page</h2></Row>
-                <Row className="bg-info">
+                <Row className="bg-info RowBorder">
                     <Col sm={12}>
                         <ProjectsMain/>
                     </Col>
