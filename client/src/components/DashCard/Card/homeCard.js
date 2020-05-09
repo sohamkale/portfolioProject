@@ -1,7 +1,7 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import fire, {storage} from "./../../../config/Fire";
-
+import placeHolder from "../../image/placeholder.png"
 const HomeCard = (props) => {
     const [image, setImage] = useState(null);
     const [userUid, setUserUid] = useState(null);
@@ -48,9 +48,15 @@ const HomeCard = (props) => {
     }
 
     return(
-    <Card style={{ width: '15rem' }}>
+    <Card style={{ width: '15rem' }} className="mt-2">
         <div className="text-center">
-        <Card.Img style={{ width: '10rem', height: '10rem' }} variant="top" src={url}/>
+        {(function() {
+            if (image != null) {
+                return <Card.Img style={{ width: '10rem', height: '10rem' }} placeholder={placeHolder} variant="top" src={url}/>;
+            } else {
+                return <Card.Img style={{ width: '10rem', height: '10rem' }} placeholder={placeHolder} variant="top" src={placeHolder}/>;
+            }
+            })()}
         </div>
     <Card.Body>
     <Card.Title>Home page background Image</Card.Title>  
@@ -74,7 +80,7 @@ const HomeCard = (props) => {
             </label>
         </div>
     </div>
-    <Button onClick={onClickUpload} variant="primary">Upload</Button>
+    <Button className="mt-2" onClick={onClickUpload} variant="primary">Upload</Button>
     </Card.Body>
     </Card>
     );

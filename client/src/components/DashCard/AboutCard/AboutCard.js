@@ -52,8 +52,16 @@ const AboutCard = (props) => {
         <Form.Text className="text-muted">
             Brief description about yourself.
         </Form.Text>
-        <Form.Control onChange={onDescriptionChange} as="textarea" placeholder={description} rows="3" />
-    <Button onClick={onClickSave} variant="primary">Save/Update</Button>
+        {/* <Form.Control onChange={onDescriptionChange} as="textarea" placeholder={description} rows="3" /> */}
+        {(function() {
+            if (description != "null") {
+                return <Form.Control onChange={onDescriptionChange} as="textarea" placeholder={description} rows="3" />
+            } else {
+                return <Form.Control onChange={onDescriptionChange} as="textarea" placeholder="Provide a description" rows="3" />
+            }
+            })()
+        }
+    <Button className="mt-2" onClick={onClickSave} variant="primary">Save/Update</Button>
     </Card.Body>
     </Card>
     );
