@@ -39,12 +39,19 @@ const SoftSkillsCard = (props) => {
         <InputGroup.Prepend>
           <InputGroup.Text id="basic-addon1">Skill:</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control id={element.id} onChange={onSkillChange} type="text" placeholder={element.skill} />
+        {(function() {
+            if (element.skill != "null") {
+                return <Form.Control id={element.id} onChange={onSkillChange} type="text" placeholder={element.skill} />
+            } else {
+                return <Form.Control id={element.id} onChange={onSkillChange} type="text" placeholder="add a soft skill" />
+            }
+        })()}
+        
         {/* {console.log("element id: " + element.id + " and skill: " + element.skill)} */}
       </InputGroup>
     
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
-      <Button id={element.id} onClick={props.deleteSkill} variant="primary">Delete</Button>
+      <Button id={element.id} className="mr-2" onClick={props.deleteSkill} variant="primary">Delete</Button>
       <Button id={element.id} onClick={onSave} variant="primary">Save</Button>
     </Card.Body>
     </Card>

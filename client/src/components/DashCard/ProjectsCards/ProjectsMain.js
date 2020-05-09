@@ -42,12 +42,7 @@ const ProjectsMain = (props) => {
 //------------------------------------------------------------------------------------------------------------------------------
     const deleteSkill = (e) => {
         console.log(e.target.id);
-        alert(e.target.name);
-        let imgRef = delRef.child(e.target.name).delete().then(function() {
-            alert("File deleted successfully");
-          }).catch(function(error) {
-            // Uh-oh, an error occurred!
-          });
+        let imgRef = delRef.child(e.target.name).delete();
        //e is the button pressed so to get the id we need e.target.id
         let copyDeleteSkillsArray = [...skillsArray]; //copy the existing array
         refAbout.child('projects').child(e.target.id).remove(); //remove the correct id from the database
@@ -93,7 +88,7 @@ const ProjectsMain = (props) => {
         <div>
             <Container fluid>
                 <Row>
-                    <Col md={12} className="text-center">
+                    <Col md={12} className="text-center mt-2">
                     <Button onClick={addSkill}>Add a new project</Button>
                     </Col>
                     <Col md={12} className="text-center">

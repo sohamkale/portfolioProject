@@ -74,7 +74,7 @@ const FooterCard = (props) => {
     }   
 
     return(
-<Card style={{ width: '18rem' }}>
+<Card style={{ width: '18rem' }} className="mt-2">
 <Card.Img variant="top" />
 <Card.Body>
     <Card.Title>Contact info and Links</Card.Title>

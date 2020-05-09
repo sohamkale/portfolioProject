@@ -2,6 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 import {Container, Row, Col, Card, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import "./ProjectsMain.css";
 import {storage} from "./../../../config/Fire";
+import placeHolder from "../../image/placeholder.png";
 const uuidv4 = require("uuid/v4");
 
 const ProjectsCards = (props) => {
@@ -87,7 +88,14 @@ const ProjectsCards = (props) => {
     softSkillsArray.push(
       <Card id={element.id} className="ProjectsCardsDiv columnMarginsProjectsCards" style={{ width: '18rem' }} key={uuidv4()}>
         <div className="text-center">
-            <Card.Img style={{ width: '10rem', height: '12rem'  }} variant="top" src={element.img} />
+        {(function() {
+            if (url != null) {
+                return  <Card.Img style={{ width: '10rem', height: '12rem'  }} variant="top" src={element.img} />
+            } else {
+                return  <Card.Img style={{ width: '10rem', height: '12rem'  }} variant="top" src={placeHolder} />
+            }
+            })()}
+           
         </div>
       <Card.Body>
         <Card.Title>Projects</Card.Title>
@@ -124,8 +132,8 @@ const ProjectsCards = (props) => {
         </div>
         </div>
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
-      <Button id={element.id} name={element.id + "image"} onClick={props.deleteSkill} variant="primary">Delete</Button>
-      <Button id={element.id} onClick={onSave} variant="primary">Save</Button>
+      <Button id={element.id} className="mr-2 mt-2" name={element.id + "image"} onClick={props.deleteSkill} variant="primary">Delete</Button>
+      <Button id={element.id} className="mt-2" onClick={onSave} variant="primary">Save</Button>
     </Card.Body>
     </Card>
     )

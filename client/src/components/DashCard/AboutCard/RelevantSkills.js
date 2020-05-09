@@ -81,7 +81,7 @@ const RelevantSkills = (props) => {
         <div>
             <Container>
                 <Row>
-                    <Col md={12} className="text-center">
+                    <Col md={12} className="text-center mt-2">
                     <Button onClick={addSkill}>Add Relevant Programming Skill</Button>
                     </Col>
                     <Col md={12} className="text-center">

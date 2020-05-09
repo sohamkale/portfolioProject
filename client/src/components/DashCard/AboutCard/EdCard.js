@@ -126,7 +126,7 @@ const EdCard = (props) => {
             </InputGroup.Prepend>
             <Form.Control id={element.id} onChange={onGpaChange}  type="text" placeholder={element.gpa} />
         </InputGroup>
-        <Button id={element.id} onClick={props.deleteUniversity} variant="primary">Delete</Button>
+        <Button id={element.id} className="mr-2" onClick={props.deleteUniversity} variant="primary">Delete</Button>
         <Button id={element.id} onClick={onClickUpdate} variant="primary">Save/Update</Button>
         </Card.Body>
         </Card>   

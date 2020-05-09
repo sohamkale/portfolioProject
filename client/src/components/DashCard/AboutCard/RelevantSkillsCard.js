@@ -62,8 +62,8 @@ const RelevantSkillsCard = (props) => {
       </InputGroup>
     
       {/* <Button id={element.id} variant="primary">Add a skill</Button> */}
-      <Button id={element.id} onClick={props.deleteSkill} variant="primary">Delete</Button>
-      <Button id={element.id} onClick={onSave} variant="primary">Save</Button>
+      <Button id={element.id} className="mr-2 mt-2" onClick={props.deleteSkill} variant="primary">Delete</Button>
+      <Button id={element.id} className="mt-2" onClick={onSave} variant="primary">Save</Button>
     </Card.Body>
     </Card>
     )

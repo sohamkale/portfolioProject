@@ -54,7 +54,7 @@ const AboutCard = (props) => {
     <Card style={{ width: '15rem' }} className="mt-2">
         <div className="text-center">
         {(function() {
-            if (image != null) {
+            if (url != "null") {
                 return <Card.Img style={{ width: '10rem', height: '10rem' }} placeholder={placeHolder} variant="top" src={url}/>;
             } else {
                 return <Card.Img style={{ width: '10rem', height: '10rem' }} placeholder={placeHolder} variant="top" src={placeHolder}/>;

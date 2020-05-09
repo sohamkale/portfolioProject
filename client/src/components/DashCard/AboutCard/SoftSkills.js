@@ -79,7 +79,7 @@ const SoftSkills = (props) => {
         <div>
             <Container fluid>
                 <Row>
-                    <Col md={12} className="text-center">
+                    <Col md={12} className="text-center mt-2">
                     <Button onClick={addSkill}>Add Skill</Button>
                     </Col>
                     <Col md={12} className="text-center">
