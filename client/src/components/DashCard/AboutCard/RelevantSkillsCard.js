@@ -32,7 +32,13 @@ const RelevantSkillsCard = (props) => {
     {
         'relevantSkill': skillToUpdate,
         'percent': percent
-    });
+    }, function(error) {
+        if (error) {
+          alert("Error in Saving! Please try again with correct inputs");
+        } else {
+            alert("Data Saved!");// Data saved successfully!
+        }
+      } );
   }
 
   let softSkillsArray = [];

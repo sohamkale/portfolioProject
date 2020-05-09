@@ -34,7 +34,13 @@ const AboutCard = (props) => {
     }
 
     const onClickSave = (e) => {
-        refAbout.update({'description': description});
+        refAbout.update({'description': description}, function(error) {
+            if (error) {
+              alert("Error in Saving! Please try again with correct inputs");
+            } else {
+                alert("Data Saved!");// Data saved successfully!
+            }
+          } );
     }
 
     return(

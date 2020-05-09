@@ -25,21 +25,14 @@ const DashCard = (props) => {
         refHome.on("value", function(userSnapshot) {
             userSnapshot.forEach(function(snapshot) {
                 if(snapshot.key === "typeWriterName"){
-                    // alert(snapshot.val());
-                    setFullName(snapshot.val());
-                    
+                    setFullName(snapshot.val());  
                 }
-                // if(snapshot.key === "homeImage"){
-                //     // alert(snapshot.value);
-                //     setHomeImage(snapshot.val());
-                // }
             });
         });
 
         refNavbar.on("value", function(userSnapshot) {
             userSnapshot.forEach(function(snapshot) {
                 if(snapshot.key === "initials"){
-                    // alert(snapshot.val());
                     setInitials(snapshot.val());
                 }
             });
@@ -56,7 +49,13 @@ const DashCard = (props) => {
 
     const onClickUpdate = (e) => {
         refHome.update({'typeWriterName': fullName});
-        refNavbar.update({'initials': initials});
+        refNavbar.update({'initials': initials}, function(error) {
+            if (error) {
+              alert("Error in Saving! Please try again with correct inputs");
+            } else {
+                alert("Data Saved!");// Data saved successfully!
+            }
+          });
     }
 
     return(

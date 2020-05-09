@@ -64,7 +64,13 @@ const FooterCard = (props) => {
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
-        'phoneNum': phoneNum});
+        'phoneNum': phoneNum}, function(error) {
+          if (error) {
+            alert("Error in Saving! Please try again with correct inputs");
+          } else {
+              alert("Data Saved!");// Data saved successfully!
+          }
+        } );
     }   
 
     return(

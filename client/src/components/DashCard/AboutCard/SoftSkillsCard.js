@@ -19,7 +19,13 @@ const SoftSkillsCard = (props) => {
       }
     })
     props.refAbout.child('softSkills').child(e.target.id).update(
-    {'skill': skillToUpdate});
+    {'skill': skillToUpdate}, function(error) {
+      if (error) {
+        alert("Error in Saving! Please try again with correct inputs");
+      } else {
+          alert("Data Saved!");// Data saved successfully!
+      }
+    } );
   }
 
   let softSkillsArray = [];

@@ -159,12 +159,12 @@ const Dashboard = (props) => {
                 </Row> 
                 <Row className="text-center RowDivFlex text-white"><h2>Footer Information</h2></Row>
                 <Row className="bg-dark">
-                    <Col mb={6} className="EduCardsDivFlex columnMargins">
+                    <Col mb={12} className="EduCardsDivFlex columnMargins">
                         <FooterCard/>
                     </Col>
-                    <Col mb={6} className="EduCardsDivFlex columnMargins">
+                    {/* <Col mb={6} className="EduCardsDivFlex columnMargins">
                         <FooterLinks/>
-                    </Col>
+                    </Col> */}
                 </Row>                
             </Container>
         </div>
