@@ -52,5 +52,59 @@ hr {
   }
 
   .RowBorder{
-      min-height: 10vw;
+      min-height: 10vh;
   }
+
+  .ProfilePicDiv{
+    width: 20vw;
+    height: 5vh;
+  }
+
+  .LogoutDeleteButton{
+    font-size: 1vw;
+  }
+
+  /* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 300px) {
+    .ProfilePicDiv{
+        width: 40vw;
+        height: 10vh;
+      }
+
+      .RowBorder{
+        min-height: 20vh;
+    }
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+  
+    .ProfilePicDiv{
+        width: 40vw;
+        height: 10vh;
+      }
+
+      .RowBorder{
+        min-height: 20vh;
+    }
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+    .ProfilePicDiv{
+        width: 20vw;
+        height: 5vh;
+      }
+
+}
+
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 1024px) {
+    .ProfilePicDiv{
+        width: 20vw;
+        height: 5vh;
+      }
+
+
+} 

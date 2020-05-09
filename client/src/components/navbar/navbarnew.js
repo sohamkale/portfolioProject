@@ -48,9 +48,8 @@ const Navbarcomp = () => {
              <Nav.Link href="/about">About</Nav.Link>
              <Nav.Link href="/projects">Projects</Nav.Link>
             <Nav.Link href="/resume">Resume</Nav.Link>
-            <Nav.Link href="/Login">Login</Nav.Link>
-            <Nav.Link href="/Signup">Signup</Nav.Link>
-            {isUser ? <Button onClick={logout} >Logout</Button> : null}
+            {isUser ? <Nav.Link href="/Login">Dashboard</Nav.Link> : <Nav.Link href="/Login">Login</Nav.Link>}
+            {isUser ? null : <Nav.Link href="/Signup">Signup</Nav.Link>}
             
 </ReactBootStrap.Nav>
 </ReactBootStrap.Navbar.Collapse>

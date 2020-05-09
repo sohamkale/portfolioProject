@@ -13,8 +13,9 @@ import AboutImage from "../../components/DashCard/AboutCard/AboutImage";
 import HomeImageCard from "../../components/DashCard/Card/homeCard";
 import ResumeCard from "../../components/DashCard/ResumeCard/ResumeCard";
 import ProfilePic from "../../components/image/profilePic.png";
+import DeleteConfirmation from "../../components/DelConfirmationBox/DeleteConfirmation";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
-import fire from "../../config/Fire";
+import fire, {storage} from "../../config/Fire";
 import { useId } from "react-id-generator";
 import "./Dashboard.css";
 const Dashboard = (props) => {
@@ -26,6 +27,8 @@ const Dashboard = (props) => {
     var db = fire.database();
     var refEducation = db.ref(`${userUid}/About/Education`);
     var refAbout = db.ref(`${userUid}/About`);
+    var refUserAccountDB = db.ref(`${userUid}`);
+    var refUserAccountStorage = storage.ref(`images/${userUid}`);
 
     useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
@@ -34,6 +37,10 @@ const Dashboard = (props) => {
             }
           }); 
     }, []);
+
+    const logout = () => {
+        fire.auth().signOut();
+    }
 
     useEffect (() => {
         refEducation.on("value", function(userSnapshot) {
@@ -99,6 +106,23 @@ const Dashboard = (props) => {
             <Container fluid className="bg-dark">
                 <Row className="bg-info">
                     <Col className="bg-dark text-white RowDivFlex">
+                    <Image fluid className="ProfilePicDiv" src={ProfilePic}></Image>
+                    </Col>
+                </Row>
+                <Row className="border-bottom mb-2">
+                    <Col xl={12} className="RowDivFlex">
+                        <Container fluid className="text-center">
+                            <button type="button" onClick={logout} class="LogoutDeleteButton btn btn-primary mt-2 mb-2">Logout</button>
+                        </Container>
+                    </Col>
+                    <Col xl={12} className="RowDivFlex">
+                        <Container fluid className="text-center">
+                            <DeleteConfirmation></DeleteConfirmation>
+                        </Container>
+                    </Col>
+                </Row>
+                <Row className="bg-info">
+                    <Col className="bg-dark text-white RowDivFlex">
                     <h2>Home Page</h2>
                     </Col>
                 </Row>
@@ -124,7 +148,7 @@ const Dashboard = (props) => {
                 <Row className="bg-danger RowBorder border-top border-left border-right border-dark">
                 
                     <Col xl={12} className="text-center columnMargins">
-                        <Button onClick={addUniversity}>Add Previous University</Button>
+                        <Button className="mt-2" onClick={addUniversity}>Add Previous University</Button>
                     </Col>
                     <Col mb={12} className="EduCardsDivFlex columnMargins">
                         <EdCard
@@ -162,9 +186,6 @@ const Dashboard = (props) => {
                     <Col mb={12} className="EduCardsDivFlex columnMargins">
                         <FooterCard/>
                     </Col>
-                    {/* <Col mb={6} className="EduCardsDivFlex columnMargins">
-                        <FooterLinks/>
-                    </Col> */}
                 </Row>                
             </Container>
         </div>
