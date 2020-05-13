@@ -10,6 +10,7 @@ const Navbarcomp = () => {
     const [initials, setInitials] = useState("");
     const [userUid, setUserUid] = useState(null);
     const [isUser, setIsUser] = useState(false);
+
     useEffect (() => {
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
@@ -44,12 +45,12 @@ const Navbarcomp = () => {
 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
 <ReactBootStrap.Nav className="mr-auto"> 
-            <Nav.Link href="/home">Home</Nav.Link>
-             <Nav.Link href="/about">About</Nav.Link>
-             <Nav.Link href="/projects">Projects</Nav.Link>
-            <Nav.Link href="/resume">Resume</Nav.Link>
-            {isUser ? <Nav.Link href="/Login">Dashboard</Nav.Link> : <Nav.Link href="/Login">Login</Nav.Link>}
-            {isUser ? null : <Nav.Link href="/Signup">Signup</Nav.Link>}
+            <Nav.Link href="/true/home">Home</Nav.Link>
+             <Nav.Link href="/true/about">About</Nav.Link>
+             <Nav.Link href="/true/projects">Projects</Nav.Link>
+            <Nav.Link href="/true/resume">Resume</Nav.Link>
+            {isUser ? <Nav.Link href="/true/Login">Dashboard</Nav.Link> : <Nav.Link href="/true/Login">Login</Nav.Link>}
+            {isUser ? null : <Nav.Link href="/true/Signup">Signup</Nav.Link>}
             
 </ReactBootStrap.Nav>
 </ReactBootStrap.Navbar.Collapse>

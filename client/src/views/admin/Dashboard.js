@@ -14,6 +14,7 @@ import HomeImageCard from "../../components/DashCard/Card/homeCard";
 import ResumeCard from "../../components/DashCard/ResumeCard/ResumeCard";
 import ProfilePic from "../../components/image/profilePic.png";
 import DeleteConfirmation from "../../components/DelConfirmationBox/DeleteConfirmation";
+import Publish from "../../components/PublishBox/Publish";
 // import EduCard from "../../components/DashCard/AboutCard/EduCard";
 import fire, {storage} from "../../config/Fire";
 import { useId } from "react-id-generator";
@@ -40,6 +41,12 @@ const Dashboard = (props) => {
 
     const logout = () => {
         fire.auth().signOut();
+    }
+
+    const publishWebsite = () => {
+        refUserAccountDB.update({
+            'publish': true
+        });
     }
 
     useEffect (() => {
@@ -186,7 +193,14 @@ const Dashboard = (props) => {
                     <Col mb={12} className="EduCardsDivFlex columnMargins">
                         <FooterCard/>
                     </Col>
-                </Row>                
+                </Row> 
+                <Row className="text-center RowDivFlex text-white"><h2>Publish Website</h2></Row>
+                <Row className="bg-info">
+                    <Col mb={12} className="EduCardsDivFlex columnMargins">
+                        {/* <Button onClick={publishWebsite}>Publish</Button> */}
+                        <Publish></Publish>
+                    </Col>
+                </Row>                 
             </Container>
         </div>
     );

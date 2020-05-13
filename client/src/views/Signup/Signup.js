@@ -54,28 +54,8 @@ const Signup = (props) => {
                 About: {
                     aboutImage: "null",
                     description: "null",
-                    //Education:
-                        //uniqueId:
-                            //{
-                                //universityObjects
-                           // }
-                    // SoftSkills: {
-                        //uniqueId:
-                            //{
-                                //softskillObjects
-                            //}
-                    // },
-                    // RelevantSkills: {
-                        //uniqueId:
-                            //{
-                                //relevantSkillObjects
-                            //}
-                    // }
                 },
                 ProjectsPage: {
-                    // Projects: {
-
-                    // },
                     resume: "imageLink"
                 },
                 FooterPage: {
@@ -88,7 +68,8 @@ const Signup = (props) => {
                     fbLink: "fbLink",
                     linkedInLink: "linkedinLink",
                     twitterLink: "twitterLink"
-                }
+                },
+                publish: false
             }).then((u)=>{
                 window.location.href='/Login';
             });
